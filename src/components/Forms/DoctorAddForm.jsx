@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const DoctorAddForm = () => {
   const [formData, setFormData] = useState({
@@ -22,8 +23,6 @@ const DoctorAddForm = () => {
     },
     instructions: "",
   });
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const specializations = [
     "Cardiology",
@@ -96,7 +95,7 @@ const DoctorAddForm = () => {
     return `APP-${dateStr}-${timeStr}`;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const appointmentId = generateAppointmentId();
     const finalData = {
@@ -105,21 +104,45 @@ const DoctorAddForm = () => {
       status: "confirmed",
       message: "Your appointment has been successfully booked.",
     };
-    console.log("Form submitted:", finalData);
-    setIsSubmitted(true);
-  };
 
- 
+    const res = await fetch("http://localhost:3000/api/allDoctors", {
+      method: "POST",
+      body: JSON.stringify(finalData),
+    });
+    const response = await res.json();
+    console.log("response", response);
+    toast.success("successfully added ");
+    if (response.insertedId) {
+      setFormData({
+        appointment_id: "",
+        status: "pending",
+        message: "",
+        details: {
+          doctor_name: "",
+          specialization: "",
+          appointment_date: "",
+          appointment_time: "",
+          patient_name: "",
+          available_days: [],
+        },
+        location: {
+          center_name: "",
+          address: "",
+          phone: "",
+          map_link: "",
+        },
+        instructions: "",
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white ">
       <div className=" ">
         <div className=" overflow-hidden">
-            {/* header */}
+          {/* header */}
 
           <form onSubmit={handleSubmit} className="p-8 space-y-8">
-            
-
             {/* Doctor & Appointment Details */}
             <div className="space-y-6">
               <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">

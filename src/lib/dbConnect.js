@@ -1,8 +1,8 @@
-import { MongoClient } from "mongodb"
+import { MongoClient, ServerApiVersion } from "mongodb"
 
 
 export const collectionName={
-    DiagnosticCenter : "DiagnosticCenter"
+    doctorCollection :"doctors"
 }
 
 export default function dbConnect(collectionName){
@@ -15,5 +15,5 @@ const client = new MongoClient(uri, {
   }
 });
 
-return client.db("doctors").collection(collectionName)
+return client.db("DiagnosticCenter").collection(collectionName)
 }
