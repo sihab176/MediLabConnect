@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }) {
     <div className="flex h-screen bg-gray-100 text-black">
       
       {/* Sidebar for large screens */}
-      <aside className="hidden md:flex md:flex-col w-64 bg-gray-400 shadow-lg">
+      <aside className="hidden md:flex md:flex-col w-64 bg-[#b3dee2] shadow-lg">
         <Link href="/">
         <div className="p-4 text-2xl font-bold border-b flex items-center gap-2"><Image
                     src="/logo.png"

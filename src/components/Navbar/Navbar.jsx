@@ -7,8 +7,17 @@ const Navbar = () => {
 
   const links = (
     <>
+      <Link href="/">
+        <li className="px-4">Home</li>
+      </Link>
       <Link href="/Dashboard">
-        <li>Dashboard</li>
+        <li className="px-4">Dashboard</li>
+      </Link>
+      <Link href="/OurTeam">
+        <li className="px-4">Our teams</li>
+      </Link>
+      <Link href="/Contact">
+        <li className="px-4">Contact us </li>
       </Link>
     </>
   );
