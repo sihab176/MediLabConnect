@@ -110,7 +110,7 @@ const DoctorAddForm = () => {
       body: JSON.stringify(finalData),
     });
     const response = await res.json();
-    console.log("response", response);
+    // console.log("response", response);
     toast.success("successfully added ");
     if (response.insertedId) {
       setFormData({

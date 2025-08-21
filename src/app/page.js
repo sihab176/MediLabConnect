@@ -7,7 +7,9 @@ import Image from "next/image";
 export default function Home() {
   return (
    <div className="max-w-[1440px] mx-auto px-3">
-    <Navbar/>
+    <div className="sticky top-0 z-10">
+      <Navbar/>
+    </div>
     <Banner/>
     <CardContainer/>
     <Footer/>

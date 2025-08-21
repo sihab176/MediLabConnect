@@ -1,21 +1,28 @@
-import React from 'react';
-import Cards from './Cards';
+import React from "react";
+import Cards from "./Cards";
+import { headers } from "next/headers";
 
-const allData=[
-    1,2,3,4,5,6,7,8
-]
 
-const CardContainer = () => {
-    return (
-        <div className='my-20'>
-            this is ths card container
-            <section className='grid grid-cols-4 gap-8'>
-                {
-                    allData.map((data,index)=><Cards index={index}/>)
-                }
-            </section>
-        </div>
-    );
+
+const fetchData = async () => {
+  const fetchData = await fetch("http://localhost:3000/api/allDoctors");
+  const res = await fetchData.json();
+
+  return res;
+};
+
+const CardContainer = async () => {
+    const allData=await fetchData()
+  return (
+    <div className="my-20">
+      this is ths card container
+      <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8">
+        {allData.map((data, index) => (
+          <Cards data={data} index={index} />
+        ))}
+      </section>
+    </div>
+  );
 };
 
 export default CardContainer;
