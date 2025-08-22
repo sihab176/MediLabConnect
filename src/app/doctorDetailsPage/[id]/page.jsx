@@ -5,7 +5,8 @@ import React from "react";
 const DoctorDetailsPage = async ({ params }) => {
   const p = await params;
   console.log("pararms", p);
-  const res = await fetch(`http://localhost:3000/api/allDoctors/${p?.id}`);
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/allDoctors/${p?.id}`);
+
   const data = await res.json();
   // console.log("singleData",singleData);
   return (

@@ -105,7 +105,7 @@ const DoctorAddForm = () => {
       message: "Your appointment has been successfully booked.",
     };
 
-    const res = await fetch("http://localhost:3000/api/allDoctors", {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/allDoctors`, {
       method: "POST",
       body: JSON.stringify(finalData),
     });

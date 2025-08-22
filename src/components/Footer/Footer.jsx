@@ -2,10 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#b3dee2]">
+    <footer className="bg-[#b3dee2] ">
       <div className="mx-auto max-w-screen-xl px-4 pt-16 pb-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-md">
-          <strong className="block text-center text-xl font-bold text-gray-900 sm:text-3xl">
+          <strong className="block text-center text-xl font-bold sm:text-3xl">
             Want us to email you with the latest blockbuster news?
           </strong>
 
@@ -40,7 +40,7 @@ const Footer = () => {
 
             <div className="mt-6 flex justify-center gap-4 lg:justify-start">
               <a
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className=" transition "
                 href="#"
                 target="_blank"
                 rel="noreferrer"
@@ -62,7 +62,7 @@ const Footer = () => {
               </a>
 
               <a
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className=" transition "
                 href="#"
                 target="_blank"
                 rel="noreferrer"
@@ -84,7 +84,7 @@ const Footer = () => {
               </a>
 
               <a
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className=" transition "
                 href="#"
                 target="_blank"
                 rel="noreferrer"
@@ -102,7 +102,7 @@ const Footer = () => {
               </a>
 
               <a
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className=" transition "
                 href="#"
                 target="_blank"
                 rel="noreferrer"
@@ -124,7 +124,7 @@ const Footer = () => {
               </a>
 
               <a
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className=" transition "
                 href="#"
                 target="_blank"
                 rel="noreferrer"
@@ -149,12 +149,12 @@ const Footer = () => {
 
           <div className="grid grid-cols-1 gap-8 text-center lg:grid-cols-3 lg:text-left">
             <div>
-              <strong className="font-medium text-gray-900"> Services </strong>
+              <strong className="font-medium "> Services </strong>
 
               <ul className="mt-6 space-y-1">
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     {" "}
@@ -164,7 +164,7 @@ const Footer = () => {
 
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     Graphic Design
@@ -173,7 +173,7 @@ const Footer = () => {
 
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     App Development
@@ -182,7 +182,7 @@ const Footer = () => {
 
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     Web Development
@@ -192,12 +192,12 @@ const Footer = () => {
             </div>
 
             <div>
-              <strong className="font-medium text-gray-900"> About </strong>
+              <strong className="font-medium "> About </strong>
 
               <ul className="mt-6 space-y-1">
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     {" "}
@@ -207,7 +207,7 @@ const Footer = () => {
 
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     {" "}
@@ -217,7 +217,7 @@ const Footer = () => {
 
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className="transition "
                     href="#"
                   >
                     {" "}
@@ -227,7 +227,7 @@ const Footer = () => {
 
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     {" "}
@@ -238,12 +238,12 @@ const Footer = () => {
             </div>
 
             <div>
-              <strong className="font-medium text-gray-900"> Support </strong>
+              <strong className="font-medium "> Support </strong>
 
               <ul className="mt-6 space-y-1">
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     {" "}
@@ -253,7 +253,7 @@ const Footer = () => {
 
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     {" "}
@@ -263,7 +263,7 @@ const Footer = () => {
 
                 <li>
                   <a
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className=" transition "
                     href="#"
                   >
                     {" "}
@@ -282,14 +282,14 @@ const Footer = () => {
             Created with
             <a
               href="#"
-              className="text-gray-700 underline transition hover:text-gray-700/75"
+              className=" underline transition "
             >
               Laravel
             </a>
             and
             <a
               href="#"
-              className="text-gray-700 underline transition hover:text-gray-700/75"
+              className=" underline transition "
             >
               Laravel Livewire
             </a>

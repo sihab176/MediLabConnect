@@ -3,6 +3,26 @@
 @plugin "daisyui" {
   themes: light ;
 }
+/* @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary:#caf0f8;
+  --color-secondary: #b3dee2;
+  --color-base-200: #f9fafb;
+  --color-base-300: #e7e7e7;
+  --color-accent: #f3f4f6;
+
+}
+@plugin "daisyui/theme" {
+  name: "dark";
+  
+  --color-primary: #001d3d;
+  --color-secondary: #001d3d;
+  --color-base-200: #000000;
+  --color-base-300: #e7e7e7;
+  --color-accent: black;
+} */
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
