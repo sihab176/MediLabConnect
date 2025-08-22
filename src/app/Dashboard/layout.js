@@ -20,7 +20,7 @@ export default function DashboardLayout({ children }) {
                     width={40}
                     height={40}
                     className="object-cover"
-                  /> <h1>MediLabConnect</h1> </div>
+                  /> <h1 className="text-sky-500 mt-1">MediLab</h1> </div>
         </Link>
         <nav className="flex-1 p-4 space-y-2">
           <Link
@@ -29,7 +29,7 @@ export default function DashboardLayout({ children }) {
           >
             Dashboard
           </Link>
-          <Link
+          {/* <Link
             href="/Dashboard/PaymentHistory"
             className={`block p-2 rounded hover:bg-gray-200 ${pathname === '/Dashboard/PaymentHistory' ? 'bg-blue-300' : ''}`}
           >
@@ -40,7 +40,7 @@ export default function DashboardLayout({ children }) {
             className="block p-2 rounded hover:bg-gray-200"
           >
             Settings
-          </Link>
+          </Link> */}
         </nav>
       </aside>
 
@@ -57,7 +57,15 @@ export default function DashboardLayout({ children }) {
         }`}
       >
         <div className="p-4 text-2xl font-bold border-b flex justify-between items-center">
-          Ultra Pay
+          <Link href="/">
+        <div className="p-2 text-2xl font-bold flex items-center gap-2"><Image
+                    src="/logo.png"
+                    alt="logo"
+                    width={40}
+                    height={40}
+                    className="object-cover"
+                  /> <h1 className="text-sky-500 mt-1">MediLab</h1> </div>
+        </Link>
           <button onClick={() => setSidebarOpen(false)}>✕</button>
         </div>
         <nav className="p-4 space-y-2">
@@ -96,7 +104,7 @@ export default function DashboardLayout({ children }) {
             <h1 className="text-lg font-bold">Dashboard</h1>
           </div>
           <div className="flex items-center gap-4">
-            <span>User Name</span>
+            {/* <span>User Name</span> */}
             {/* <img
               src="https://via.placeholder.com/32"
               alt="avatar"

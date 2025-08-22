@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import CountUp from "react-countup";
 
+
 const CountUpSection = () => {
   return (
     <div>

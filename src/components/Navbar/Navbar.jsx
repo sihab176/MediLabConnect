@@ -1,30 +1,50 @@
+"use client";
+import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const Navbar = () => {
-  //! DiagnosticCentre
-  //! 09LpWDv3PW9bSYcH
+  const pathname = usePathname();
+  const { data: session, status } = useSession();
 
   const links = (
     <>
-      <Link href="/">
-        <li className="px-4">Home</li>
-      </Link>
-      <Link href="/Dashboard">
-        <li className="px-4">Dashboard</li>
-      </Link>
-      <Link href="/OurTeam">
-        <li className="px-4">Our teams</li>
-      </Link>
-      <Link href="/Contact">
-        <li className="px-4">Contact us </li>
-      </Link>
+      <li
+        className={`mx-4 ${
+          pathname == "/" ? "text-sky-500 font-bold border-b-2" : ""
+        }`}
+      >
+        <Link href="/">Home</Link>
+      </li>
+      <li
+        className={`mx-4 ${
+          pathname == "/Dashboard" ? "text-sky-500 font-bold border-b-2" : ""
+        }`}
+      >
+        <Link href="/Dashboard">Dashboard</Link>
+      </li>
+      <li
+        className={`mx-4 ${
+          pathname == "/OurTeam" ? "text-sky-500 font-bold border-b-2" : ""
+        }`}
+      >
+        <Link href="/OurTeam">Our teams</Link>
+      </li>
+      <li
+        className={`mx-4 ${
+          pathname == "/Contact" ? "text-sky-500 font-bold border-b-2" : ""
+        }`}
+      >
+        <Link href="/Contact">Contact us</Link>
+      </li>
     </>
   );
 
   return (
     <div>
-      <div className="navbar  shadow-sm bg-[#caf0f8] ">
+      <div className="navbar  shadow-sm bg-[#caf0f8] lg:px-6 ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,13 +72,35 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <Link href="/">
+            <div className="text-2xl font-bold flex items-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="logo"
+                width={40}
+                height={40}
+                className="object-cover"
+              />{" "}
+              <h1 className="text-sky-500 mt-1">MediLab</h1>{" "}
+            </div>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {status === "authenticated" ? (
+            <button
+              onClick={() => signOut()}
+              className="btn btn-sm bg-sky-700 border-0 mx-2"
+            >
+              Log out
+            </button>
+          ) : (
+            <Link href="/login">
+              <button className="btn btn-sm bg-sky-700 border-0">Login</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

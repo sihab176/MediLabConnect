@@ -2,26 +2,39 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
-
+import { signIn } from "next-auth/react";
 import "react-phone-input-2/lib/style.css";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
 
 const LoginPage = () => {
-  const [phone, setPhone] = useState("");
+  const router= useRouter()
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     const from= e.target
-    const name= from.name.value 
     const email= from.email.value 
-    const password= from.email.value 
+    const password= from.password.value 
     console.log(name, email, password);
+    const result= await signIn("credentials",{
+      redirect: false,
+      email,
+      password
+    })
+    if(result.error){
+      toast.error("Authentication field")
+    }else{
+      toast.success("successfully login")
+      router.push("/")
+      from.reset()
+    }
   };
 
   return (
     <section className="flex justify-center items-center">
       <div
-        className="w-full max-w-md p-8 space-y-3  mt-20  bg-white rounded-lg shadow-md "
+        className="w-full max-w-md p-8 space-y-3  mt-20  bg-[#caf0f8] rounded-lg  shadow-2xl "
         bis_skin_checked="1"
       >
         <h1 className="text-2xl font-bold text-center">Login</h1>
@@ -126,7 +139,7 @@ const LoginPage = () => {
           <Link
             rel="noopener noreferrer"
             href="/register"
-            className="underline dark:text-gray-800"
+            className="underline dark:text-blue-600"
           >
             Sign up
           </Link>

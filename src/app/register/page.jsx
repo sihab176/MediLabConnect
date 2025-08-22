@@ -4,24 +4,39 @@ import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 
 import "react-phone-input-2/lib/style.css";
+import { RegisterUser } from "../actions/auth/RegisterUser";
+import { signIn } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const registerPage = () => {
   const [phone, setPhone] = useState("");
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
-    const from= e.target
-    const name= from.name.value 
-    const email= from.email.value 
-    const password= from.email.value 
-    console.log(name, email, password);
+    const from = e.target;
+    const name = from.name.value;
+    const email = from.email.value;
+    const password = from.password.value;
+    // console.log(name, email, password);
+    const res= await RegisterUser({name, email, password,phone});
+    console.log("res=========>" ,res);
+    if(res.success){
+      toast.success("successfully sign in")
+      await signIn("credentials",{
+        redirect : true ,
+        email,
+        password,
+        callbackUrl:"/"
+      })
+    }else if(res.status){
+      toast.error("email already used")
+    }
   };
 
   return (
     <section className="flex justify-center items-center">
       <div
-        className="w-full max-w-md p-8 space-y-3  mt-10  bg-white rounded-lg shadow-md "
+        className="w-full max-w-md p-8 space-y-3  mt-10  bg-[#caf0f8] rounded-lg shadow-2xl "
         bis_skin_checked="1"
       >
         <h1 className="text-2xl font-bold text-center">Register you account</h1>
@@ -34,8 +49,8 @@ const registerPage = () => {
               type="text"
               name="name"
               placeholder="Username"
-              className="w-full px-4 py-2 rounded border border-gray-400"
-             
+              required
+              className="w-full px-4 py-2 rounded border border-gray-400 bg-white"
             />
           </div>
           <div className="space-y-1 text-sm" bis_skin_checked="1">
@@ -46,7 +61,8 @@ const registerPage = () => {
               type="email"
               name="email"
               placeholder="email"
-              className="w-full px-4 py-2 rounded border border-gray-400"
+              required
+              className="w-full px-4 py-2 rounded border border-gray-400 bg-white"
             />
           </div>
 
@@ -59,6 +75,7 @@ const registerPage = () => {
                 value={phone}
                 onChange={setPhone}
                 inputStyle={{ width: "380px" }}
+                className="bg-[#caf0f8]"
               />
             </div>
           </div>
@@ -71,8 +88,9 @@ const registerPage = () => {
               type="password"
               name="password"
               id="password"
+              required
               placeholder="Password"
-              className="w-full px-4 py-2 rounded border border-gray-400"
+              className="w-full px-4 py-2 rounded border border-gray-400 bg-white"
             />
             <div
               className="flex justify-end text-xs dark:text-gray-600"
@@ -84,10 +102,10 @@ const registerPage = () => {
             </div>
           </div>
           <button
-            className="block w-full p-3 text-center rounded-sm bg-sky-500"
+            className="block w-full p-3 text-center rounded-sm bg-sky-500 btn border-none"
             fdprocessedid="p6vw3g"
           >
-            Sign in
+            Sign up
           </button>
         </form>
         <div className="flex items-center pt-4 space-x-1" bis_skin_checked="1">
@@ -149,9 +167,9 @@ const registerPage = () => {
           <Link
             rel="noopener noreferrer"
             href="/login"
-            className="underline dark:text-gray-800"
+            className="underline dark:text-blue-600"
           >
-            Sign up
+            Sign in
           </Link>
         </p>
       </div>

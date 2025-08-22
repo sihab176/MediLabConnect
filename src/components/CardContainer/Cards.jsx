@@ -1,10 +1,10 @@
 import Link from "next/link";
 import React from "react";
 import { LuExternalLink } from "react-icons/lu";
-const Cards = ({data,index}) => {
-  console.log(data);
+const Cards = ({data}) => {
+  // console.log(data);
   return (
-    <div key={index}>
+    <div key={data?._id}>
       <div className="block rounded-lg p-4 shadow-xs shadow-indigo-100">
         <img
           alt=""

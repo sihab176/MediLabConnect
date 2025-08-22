@@ -15,10 +15,10 @@ const CardContainer = async () => {
     const allData=await fetchData()
   return (
     <div className="my-20">
-      this is ths card container
+     <h2 className="text-3xl font-bold mb-10 text-center">Our Dedicated Doctors</h2>
       <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8">
-        {allData.map((data, index) => (
-          <Cards data={data} index={index} />
+        {allData.map((data) => (
+          <Cards data={data}  key={data._id}/>
         ))}
       </section>
     </div>
