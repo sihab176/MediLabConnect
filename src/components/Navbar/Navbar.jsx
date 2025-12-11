@@ -38,6 +38,13 @@ const Navbar = () => {
       </li>
       <li
         className={`mx-4 ${
+          pathname == "/ai_doctor" ? "text-sky-500 font-bold border-b-2" : ""
+        }`}
+      >
+        <Link href="/ai_doctor">AI Doctor</Link>
+      </li>
+      <li
+        className={`mx-4 ${
           pathname == "/Dashboard" ? "text-sky-500 font-bold border-b-2" : ""
         }`}
       >
@@ -131,13 +138,13 @@ const Navbar = () => {
           {status === "authenticated" ? (
             <button
               onClick={() => signOut()}
-              className="btn btn-sm bg-sky-700 border-0 mx-2"
+              className="btn btn-sm bg-sky-700 border-0 mx-2 text-white"
             >
               Log out
             </button>
           ) : (
             <Link href="/login">
-              <button className="btn btn-sm bg-sky-700 border-0">Login</button>
+              <button className="btn btn-sm bg-sky-700 border-0 text-white">Login</button>
             </Link>
           )}
         </div>

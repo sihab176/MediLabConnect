@@ -5,7 +5,7 @@ const Cards = ({data}) => {
   // console.log(data);
   return (
     <div key={data?._id}>
-      <div className="block rounded-lg p-4 shadow-xs shadow-indigo-100">
+      <div className="block rounded-lg p-4 shadow-xs hover:shadow-2xl shadow-indigo-100">
         <img
           alt=""
           src={data?.location?.map_link}
