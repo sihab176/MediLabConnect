@@ -4,8 +4,10 @@ import SuggestDoctorCard from "./SuggestDoctrorCard/SuggestDoctorCard";
 
 const Modal = ({ open, setOpen }) => {
   const [note, setNote] = useState(null);
-  const [res, setRes] = useState("");
+  const [loading, setLoading] = useState(false);
   const [suggestDoctor, setSuggestDoctor] = useState([]);
+  const [selectedDoctor, setSelectedDoctor] = useState({});
+
   //TODO : this is  normal chat bot --------->
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -20,6 +22,7 @@ const Modal = ({ open, setOpen }) => {
   // };
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const r = await fetch("/api/suggest-doctors", {
       method: "POST",
@@ -28,12 +31,8 @@ const Modal = ({ open, setOpen }) => {
     });
     const data = await r.json();
     setSuggestDoctor(data);
-
-    // setOpen(false);
+    setLoading(false);
   };
-
-  console.log("this is response", suggestDoctor);
-
   return (
     <div>
       {open && (
@@ -48,14 +47,19 @@ const Modal = ({ open, setOpen }) => {
             </button>
 
             {/* Modal Content */}
-            {suggestDoctor.length>0 ? (
+            {suggestDoctor.length > 0 ? (
               // suggest doctors card
-              <div className="grid grid-cols-2 gap-4 ">
-                {
-                  suggestDoctor.map((doctor,index)=>(
-                    <SuggestDoctorCard doctor={doctor} index={index}/>
-                  ))
-                }
+              <div className="grid grid-cols-2 gap-2 ">
+                {suggestDoctor.map((doctor, index) => (
+                  <div key={doctor.id}>
+                    <SuggestDoctorCard
+                      doctor={doctor}
+                      index={index}
+                      setSelectedDoctor={() => setSelectedDoctor(doctor)}
+                      selectedDoctor={selectedDoctor}
+                    />
+                  </div>
+                ))}
               </div>
             ) : (
               // write to search doctor
@@ -73,14 +77,28 @@ const Modal = ({ open, setOpen }) => {
               </div>
             )}
             <div className="flex justify-end gap-10">
-              <button
-                onClick={handleSubmit}
-                disabled={!note}
-                // onClick={() => }
-                className="btn bg-black/80 text-white px-5"
-              >
-                Next
-              </button>
+              {!suggestDoctor ? (
+                <button
+                  onClick={handleSubmit}
+                  disabled={!note}
+                  className="btn bg-black/80 text-white px-5"
+                >
+                  Next{" "}
+                  {loading && (
+                    <span className="loading loading-spinner text-blue-500"></span>
+                  )}
+                </button>
+              ) : (
+                <button
+                  disabled={!selectedDoctor || loading}
+                  className="btn bg-black/80 text-white px-5"
+                >
+                  Consultations{" "}
+                  {loading && (
+                    <span className="loading loading-spinner text-blue-500"></span>
+                  )}
+                </button>
+              )}
             </div>
           </div>
         </div>

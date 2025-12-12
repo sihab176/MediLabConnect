@@ -4,7 +4,8 @@ import { NextResponse } from "next/server"
 
 export const GET =async(req,{params})=>{
     const doctorsCollection=dbConnect("doctors")
-    const result = await doctorsCollection.find().limit(8).toArray()
+    const result = await doctorsCollection.find().toArray()
+    // console.log("result route", result)
     return NextResponse.json(result)
 }
 

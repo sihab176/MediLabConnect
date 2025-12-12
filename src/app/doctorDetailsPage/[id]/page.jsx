@@ -4,7 +4,7 @@ import React from "react";
 
 const DoctorDetailsPage = async ({ params }) => {
   const p = await params;
-  console.log("pararms", p);
+  // console.log("pararms", p);
   const res = await fetch(
     `${process.env.NEXTAUTH_URL}/api/allDoctors/${p?.id}`
   );
@@ -16,16 +16,16 @@ const DoctorDetailsPage = async ({ params }) => {
       <div className="sticky top-0 z-10">
         <Navbar />
       </div>
-      <div className="min-h-screen p-10 px-4 flex justify-center">
+      <div className="min-h-screen p-10  mx-5 flex justify-center">
         <div className=" w-full flex justify-between flex-col md:flex-row  rounded-2xl shadow-lg overflow-hidden">
           {/* Header */}
-          <div className="flex-1 lg:mt-20">
+          <div className="flex-1 lg:mt-7 pl-4">
             <Image
-              src={data.location.map_link}
+              src={data?.location?.image_link || "/doctor7.png"}
               alt="Doctor Location"
               width={800}
               height={400}
-              className="rounded-lg object-cover"
+              className="rounded-lg object-cover h-[570px] "
             />
           </div>
 

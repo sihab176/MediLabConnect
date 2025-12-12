@@ -1,23 +1,26 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { LuExternalLink } from "react-icons/lu";
-const Cards = ({data}) => {
-  // console.log(data);
+const Cards = ({ data }) => {
+  // console.log( "this is  card data",data);
   return (
     <div key={data?._id}>
       <div className="block rounded-lg p-4 shadow-xs hover:shadow-2xl shadow-indigo-100">
-        <img
-          alt=""
-          src={data?.location?.map_link}
+        <Image
+          alt="doctor image"
+          src={data?.location?.image_link}
+          width={200}
+          height={180}
           className="h-56 w-full rounded-md object-cover"
         />
 
         <div className="mt-2">
           <dl>
             <div>
-             
-
-              <h2 className="text-sm text-sky-500">{data?.details?.specialization}</h2>
+              <h2 className="text-sm text-sky-500">
+                {data?.details?.specialization}
+              </h2>
             </div>
 
             <div>
@@ -50,11 +53,11 @@ const Cards = ({data}) => {
                 <p className="font-medium">{data?.location?.center_name}</p>
               </div>
             </div>
-           <Link href={`/doctorDetailsPage/${data?._id}`}>
-            <div>
-              <LuExternalLink size={24}/>
-            </div>
-           </Link>
+            <Link href={`/doctorDetailsPage/${data?._id}`}>
+              <div>
+                <LuExternalLink size={24} />
+              </div>
+            </Link>
             {/* <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
              
 
@@ -64,8 +67,6 @@ const Cards = ({data}) => {
                 <p className="font-medium">{data?.details?.appointment_time}</p>
               </div>
             </div> */}
-
-    
           </div>
         </div>
       </div>

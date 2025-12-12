@@ -7,10 +7,12 @@ const fetchData = async () => {
   });
 
   if (!res.ok) {
-    throw new Error(`Failed to fetch doctor details: ${res.status} ${res.statusText}`);
+    throw new Error(
+      `Failed to fetch doctor details: ${res.status} ${res.statusText}`
+    );
   }
 
-  return res.json(); // এখানে সরাসরি JSON এ কনভার্ট করলাম
+  return res.json();
 };
 
 const CardContainer = async () => {
@@ -22,7 +24,7 @@ const CardContainer = async () => {
         Our Dedicated Doctors
       </h2>
       <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8">
-        {allData.map((data) => (
+        {allData.slice(0, 8).map((data) => (
           <Cards data={data} key={data._id} />
         ))}
       </section>
@@ -31,4 +33,3 @@ const CardContainer = async () => {
 };
 
 export default CardContainer;
-

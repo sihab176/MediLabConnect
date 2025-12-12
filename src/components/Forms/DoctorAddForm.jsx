@@ -12,27 +12,29 @@ const DoctorAddForm = () => {
       specialization: "",
       appointment_date: "",
       appointment_time: "",
-      patient_name: "",
       available_days: [],
     },
     location: {
       center_name: "",
       address: "",
+      agent_promt: "",
       phone: "",
-      map_link: "",
+      image_link: "",
     },
     instructions: "",
   });
 
   const specializations = [
-    "Cardiology",
-    "Neurology",
-    "Orthopedics",
-    "Dermatology",
-    "Pediatrics",
-    "Oncology",
-    "Psychiatry",
-    "General Medicine",
+    "General Physician",
+    "Pediatrician",
+    "Dermatologist",
+    "Psychologist",
+    "Nutritionist",
+    "Cardiologist",
+    "ENT Specialist",
+    "Orthopedic",
+    "Gynecologist",
+    "Dentist",
   ];
 
   const timeSlots = [
@@ -105,7 +107,7 @@ const DoctorAddForm = () => {
       message: "Your appointment has been successfully booked.",
     };
 
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/allDoctors`, {
+    const res = await fetch(`/api/allDoctors`, {
       method: "POST",
       body: JSON.stringify(finalData),
     });
@@ -122,14 +124,14 @@ const DoctorAddForm = () => {
           specialization: "",
           appointment_date: "",
           appointment_time: "",
-          patient_name: "",
           available_days: [],
         },
         location: {
           center_name: "",
           address: "",
+          agent_promt: "",
           phone: "",
-          map_link: "",
+          image_link: "",
         },
         instructions: "",
       });
@@ -149,6 +151,7 @@ const DoctorAddForm = () => {
                 Appointment Details
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Doctor Name * */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Doctor Name *
@@ -163,6 +166,7 @@ const DoctorAddForm = () => {
                     required
                   />
                 </div>
+                {/*  Specialization * */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Specialization *
@@ -182,6 +186,7 @@ const DoctorAddForm = () => {
                     ))}
                   </select>
                 </div>
+                {/* Appointment Date * */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Appointment Date *
@@ -195,6 +200,7 @@ const DoctorAddForm = () => {
                     required
                   />
                 </div>
+                {/* Time Slot * */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Time Slot *
@@ -248,6 +254,7 @@ const DoctorAddForm = () => {
                 Location Information
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Center Name * */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Center Name *
@@ -262,6 +269,7 @@ const DoctorAddForm = () => {
                     required
                   />
                 </div>
+                {/* Phone Number * */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Phone Number *
@@ -276,6 +284,7 @@ const DoctorAddForm = () => {
                     required
                   />
                 </div>
+                {/* Address * */}
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Address *
@@ -290,17 +299,33 @@ const DoctorAddForm = () => {
                     required
                   />
                 </div>
+                {/*  Image Link */}
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Map Link
+                    Image Link
                   </label>
                   <input
                     type="url"
-                    name="location.map_link"
-                    value={formData.location.map_link}
+                    name="location.image_link"
+                    value={formData.location.image_link}
                     onChange={handleInputChange}
-                    placeholder="https://maps.example.com/location/123"
+                    placeholder="https://image.example.png"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                {/* Agent Promt */}
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Agent Promt
+                  </label>
+                  <input
+                    type="text"
+                    name="location.agent_promt"
+                    value={formData.location.agent_promt}
+                    onChange={handleInputChange}
+                    placeholder="Write a promt for agent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
                   />
                 </div>
               </div>
