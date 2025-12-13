@@ -33,77 +33,153 @@ const Modal = ({ open, setOpen }) => {
     setSuggestDoctor(data);
     setLoading(false);
   };
+
+  const handleCancel=()=>{
+     setOpen(false)
+     setSuggestDoctor([])
+     setNote(null)
+  }
+
   return (
-    <div>
+    // <div>
+    //   {open && (
+    //     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 transition duration-200">
+    //       <div className="bg-white p-6 rounded-lg shadow-lg w-[500px] relative">
+    //         {/* Close button */}
+    //         <button
+    //           onClick={() => setOpen(false)} // set false → close modal
+    //           className="absolute top-2 right-2 text-xl"
+    //         >
+    //           ✕
+    //         </button>
+
+    //         {/* Modal Content */}
+    //         {suggestDoctor.length > 0 ? (
+    //           // suggest doctors card
+    //           <div className="grid grid-cols-2 gap-2 ">
+    //             {suggestDoctor.map((doctor, index) => (
+    //               <div key={doctor._id}>
+    //                 <SuggestDoctorCard
+    //                   doctor={doctor}
+    //                   index={index}
+    //                   setSelectedDoctor={setSelectedDoctor}
+    //                   selectedDoctor={selectedDoctor}
+    //                 />
+    //               </div>
+    //             ))}
+    //           </div>
+    //         ) : (
+    //           // write to search doctor
+    //           <div>
+    //             <h3 className="font-bold text-lg">Add Basic Details</h3>
+    //             <p className="py-4 text-gray-500">
+    //               Add Symptoms or Any Other Details
+    //             </p>
+    //             <textarea
+    //               onChange={(e) => setNote(e.target.value)}
+    //               name="problem"
+    //               placeholder="Add Details Here..."
+    //               className="h-[160px] w-full rounded p-2  border border-gray-500 "
+    //             ></textarea>
+    //           </div>
+    //         )}
+    //         <div className="flex justify-end gap-10">
+    //           {suggestDoctor ? (
+    //             <button
+    //               onClick={handleSubmit}
+    //               disabled={!note}
+    //               className="btn bg-black/80 text-white px-5"
+    //             >
+    //               Next{" "}
+    //               {loading && (
+    //                 <span className="loading loading-spinner text-blue-500"></span>
+    //               )}
+    //             </button>
+    //           ) : (
+    //             <button
+    //               disabled={!selectedDoctor || loading}
+    //               className="btn bg-black/80 text-white px-5"
+    //             >
+    //               Consultations{" "}
+    //               {loading && (
+    //                 <span className="loading loading-spinner text-blue-500"></span>
+    //               )}
+    //             </button>
+    //           )}
+    //         </div>
+    //       </div>
+    //     </div>
+    //   )}
+    // </div>
+    <>
       {open && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 transition duration-200">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-[500px] relative">
-            {/* Close button */}
+            
+            {/* close */}
             <button
-              onClick={() => setOpen(false)} // set false → close modal
+              onClick={() => setOpen(false)}
               className="absolute top-2 right-2 text-xl"
             >
               ✕
             </button>
 
-            {/* Modal Content */}
-            {suggestDoctor.length > 0 ? (
-              // suggest doctors card
-              <div className="grid grid-cols-2 gap-2 ">
-                {suggestDoctor.map((doctor, index) => (
-                  <div key={doctor.id}>
-                    <SuggestDoctorCard
-                      doctor={doctor}
-                      index={index}
-                      setSelectedDoctor={() => setSelectedDoctor(doctor)}
-                      selectedDoctor={selectedDoctor}
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              // write to search doctor
-              <div>
+            {/* content */}
+            {suggestDoctor.length === 0 ? (
+              <>
                 <h3 className="font-bold text-lg">Add Basic Details</h3>
-                <p className="py-4 text-gray-500">
+                <p className="py-2 text-gray-500">
                   Add Symptoms or Any Other Details
                 </p>
+
                 <textarea
+                  value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  name="problem"
                   placeholder="Add Details Here..."
-                  className="h-[160px] w-full rounded p-2  border border-gray-500 "
-                ></textarea>
-              </div>
+                  className="h-[160px] w-full rounded p-2 border"
+                />
+
+                <div className="flex justify-end mt-4">
+                  <button
+                    onClick={handleSubmit}
+                    disabled={!note || loading}
+                    className="btn bg-black/80 text-white px-5"
+                  >
+                    Next
+                    {loading && (
+                      <span className="loading loading-spinner ml-2"></span>
+                    )}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="grid grid-cols-2 gap-2">
+                  {suggestDoctor.map((doctor) => (
+                    <SuggestDoctorCard
+                      key={doctor.id}
+                      doctor={doctor}
+                      selectedDoctor={selectedDoctor}
+                      setSelectedDoctor={setSelectedDoctor} // ✅ correct
+                    />
+                  ))}
+                </div>
+
+                <div className="flex justify-end mt-4">
+                  <button
+                   onClick={handleCancel}
+                    disabled={!selectedDoctor}
+                    className="btn  btn-sm text-black outline outline-gray-400 px-5"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
             )}
-            <div className="flex justify-end gap-10">
-              {!suggestDoctor ? (
-                <button
-                  onClick={handleSubmit}
-                  disabled={!note}
-                  className="btn bg-black/80 text-white px-5"
-                >
-                  Next{" "}
-                  {loading && (
-                    <span className="loading loading-spinner text-blue-500"></span>
-                  )}
-                </button>
-              ) : (
-                <button
-                  disabled={!selectedDoctor || loading}
-                  className="btn bg-black/80 text-white px-5"
-                >
-                  Consultations{" "}
-                  {loading && (
-                    <span className="loading loading-spinner text-blue-500"></span>
-                  )}
-                </button>
-              )}
-            </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

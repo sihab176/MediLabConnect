@@ -1,7 +1,7 @@
 import React from "react";
 import Cards from "./Cards";
 
-const fetchData = async () => {
+export const fetchData = async () => {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/allDoctors`, {
     cache: "no-store", // optional
   });

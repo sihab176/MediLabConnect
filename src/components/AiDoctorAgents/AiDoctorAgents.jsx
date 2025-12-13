@@ -72,7 +72,7 @@ const AiDoctorAgents = () => {
         {/* SEARCH BOX */}
         <div className="mb-4">
           <label className="font-semibold text-gray-600">Search</label>
-          <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-xl mt-1">
+          <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded mt-1">
             <FiSearch className="text-gray-500" />
             <input
               type="text"
@@ -87,7 +87,7 @@ const AiDoctorAgents = () => {
         {/* LOCATION */}
         <div className="mb-6">
           <label className="font-semibold text-gray-600">Location</label>
-          <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-xl mt-1">
+          <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded mt-1">
             <FiMapPin className="text-gray-500" />
             <input
               type="text"
@@ -103,7 +103,7 @@ const AiDoctorAgents = () => {
         <div className="mb-6">
           <p className="font-semibold text-gray-600 mb-2">Specialization</p>
           <select
-            className="select select-bordered w-full rounded-xl"
+            className="select select-bordered w-full rounded"
             value={specialization}
             onChange={(e) => setSpecialization(e.target.value)}
           >
@@ -122,7 +122,7 @@ const AiDoctorAgents = () => {
         <div className="mb-6">
           <p className="font-semibold text-gray-600 mb-2">Sort</p>
           <select
-            className="select select-bordered w-full rounded-xl"
+            className="select select-bordered w-full rounded"
             value={sort}
             onChange={(e) => setSort(e.target.value)}
           >
@@ -140,7 +140,7 @@ const AiDoctorAgents = () => {
             setCenter("");
             setSort("");
           }}
-          className="btn btn-neutral w-full rounded-xl mt-4"
+          className="btn btn-neutral w-full rounded mt-4"
         >
           Reset Filters
         </button>
