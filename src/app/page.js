@@ -7,6 +7,8 @@ import MedicalTeam from "@/components/MedicalTeam/MedicalTeam";
 import Navbar from "@/components/Navbar/Navbar";
 import ScrollingText from "./ScrollingText/page";
 import CareProcess from "./CareProcess/page";
+import HealthSolutions from "@/components/HealthSolutions/HealthSolutions";
+import MedicalTreatment from "@/components/MedicalTreatment/MedicalTreatment";
 
 export default function Home() {
   return (
@@ -15,11 +17,12 @@ export default function Home() {
       <Navbar/>
     </div>
     <Banner/>
-    <CardContainer/>
+    <HealthSolutions/>
     <CountUpSection/>
     <MedicalTeam/>
     <ScrollingText/>
     <CareProcess/>
+    <MedicalTreatment/>
     {/* <ContactUs/> */}
     <Footer/>
    </div>
