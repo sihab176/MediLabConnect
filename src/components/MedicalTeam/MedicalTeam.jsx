@@ -78,7 +78,7 @@ const MedicalTeam = () => {
                 <p className="">Oncology</p>
               </div>
             </section>
-            <section className="flex items-center gap-2">
+            <section className="flex items-center gap-2 ">
               <div className="">
                 <Image
                   src="/med-2.png"
@@ -88,7 +88,7 @@ const MedicalTeam = () => {
                   className="object-cover rounded-full ring-2 ring-sky-600"
                 />
               </div>
-              <div>
+              <div >
                 <h3 className="text-2xl text-bold">Dr.Mickel bars</h3>
                 <p className="">Oncology</p>
               </div>

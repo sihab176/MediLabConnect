@@ -3,6 +3,37 @@
 @plugin "daisyui" {
   themes: light ;
 }
+
+.hover-fill-text {
+  font-size: 80px;
+  font-weight: 900;
+  margin-right: 50px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  
+  /* টেক্সট আউটলাইন তৈরি করা */
+  color: transparent;
+  -webkit-text-stroke: 1px #001a41;
+
+  /* ব্যাকগ্রাউন্ড কালার সেটআপ (যা বাম থেকে ডানে আসবে) */
+  background: linear-gradient(to right, #001a41 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  /* এনিমেশন ট্রানজিশন */
+  transition: background-position 0.7s ease-out, color 0.7s ease-out;
+}
+
+.hover-fill-text:hover {
+  /* হোভার করলে ব্যাকগ্রাউন্ড পজিশন বামে সরে আসবে */
+  background-position: 0 0;
+  color: #001a41;
+}
+
+
+
 /* @plugin "daisyui";
 @plugin "daisyui/theme" {
   name: "light";

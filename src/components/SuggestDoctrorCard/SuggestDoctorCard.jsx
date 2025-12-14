@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const SuggestDoctorCard = ({
@@ -30,7 +31,7 @@ const SuggestDoctorCard = ({
         <h1 className="font-semibold text-sm text-gray-500">
           {doctor.details.doctor_name}
         </h1>
-        <button className="btn bg-black px-4 btn-sm text-white">APPOINTMENT</button>
+        <Link href={`/doctorDetailsPage/${doctor?._id}`} className="btn bg-black px-4 btn-sm text-white">APPOINTMENT</Link>
       </div>
     </div>
   );

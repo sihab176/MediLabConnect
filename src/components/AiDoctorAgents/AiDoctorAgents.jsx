@@ -7,6 +7,8 @@ import DoctorAgentCard from "./DoctorAgentCard";
 const AiDoctorAgents = () => {
   const [allDoctors, setAllDoctors] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   const [search, setSearch] = useState("");
   const [specialization, setSpecialization] = useState("");
@@ -60,6 +62,12 @@ const AiDoctorAgents = () => {
 
     setFiltered(temp);
   }, [search, specialization, center, sort, allDoctors]);
+
+  // pagination
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedDoctors = filtered.slice(startIndex, endIndex);
 
   return (
     <section className="max-w-7xl mx-auto mb-16 mt-10 grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -144,17 +152,46 @@ const AiDoctorAgents = () => {
         >
           Reset Filters
         </button>
+        {/* --- PAGINATION BUTTON ----- */}
+        <div className="mt-6">
+          <p className="font-semibold text-gray-600 mb-2">Pages</p>
+
+          <div className="flex flex-wrap gap-2">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`btn btn-sm ${
+                  currentPage === page ? "btn-neutral" : "btn-outline"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* DOCTORS LIST */}
-      <div className="lg:col-span-3 gap-6">
+      {/* <div className="lg:col-span-3 gap-6">
         {filtered.length > 0 ? (
           filtered.map((data, index) => (
             <DoctorAgentCard data={data} key={index} />
           ))
         ) : (
           <p className="text-center text-lg font-semibold text-gray-500 mt-10">
-            No doctor found 🥲
+            No doctor found 
+          </p>
+        )}
+      </div> */}
+      <div className="lg:col-span-3 gap-6">
+        {paginatedDoctors.length > 0 ? (
+          paginatedDoctors.map((data, index) => (
+            <DoctorAgentCard key={index} data={data} />
+          ))
+        ) : (
+          <p className="text-center text-lg font-semibold text-gray-500 mt-10">
+            No doctor found
           </p>
         )}
       </div>

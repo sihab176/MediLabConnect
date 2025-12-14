@@ -5,7 +5,8 @@ import CountUpSection from "@/components/CountUP/CountUpSection";
 import Footer from "@/components/Footer/Footer";
 import MedicalTeam from "@/components/MedicalTeam/MedicalTeam";
 import Navbar from "@/components/Navbar/Navbar";
-import Image from "next/image";
+import ScrollingText from "./ScrollingText/page";
+import CareProcess from "./CareProcess/page";
 
 export default function Home() {
   return (
@@ -17,7 +18,9 @@ export default function Home() {
     <CardContainer/>
     <CountUpSection/>
     <MedicalTeam/>
-    <ContactUs/>
+    <ScrollingText/>
+    <CareProcess/>
+    {/* <ContactUs/> */}
     <Footer/>
    </div>
   );

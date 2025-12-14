@@ -8,7 +8,7 @@ const Modal = ({ open, setOpen }) => {
   const [suggestDoctor, setSuggestDoctor] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState({});
 
-  //TODO : this is  normal chat bot --------->
+  //TODO : This is  normal chat bot --------->
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
   //   const r = await fetch("/api/generate", {
@@ -21,6 +21,7 @@ const Modal = ({ open, setOpen }) => {
   //   setOpen(false);
   // };
 
+  //handle submit------------->
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -34,6 +35,7 @@ const Modal = ({ open, setOpen }) => {
     setLoading(false);
   };
 
+  //handle cancel------------->
   const handleCancel=()=>{
      setOpen(false)
      setSuggestDoctor([])

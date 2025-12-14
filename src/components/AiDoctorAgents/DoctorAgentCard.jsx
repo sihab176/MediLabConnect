@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FiMapPin, FiGlobe } from "react-icons/fi";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+import Link from "next/link";
 
 const DoctorAgentCard = ({ data }) => {
   return (
@@ -63,9 +64,9 @@ const DoctorAgentCard = ({ data }) => {
               <MdEmail /> EMAIL
             </button> */}
 
-            <button className="px-4 py-2 rounded-lg border text-sm border-gray-400 hover:bg-gray-100">
+            <Link href={`/doctorDetailsPage/${data?._id}`} className="px-4 py-2 rounded-lg border text-sm border-gray-400 hover:bg-gray-100">
               APPOINTMENT
-            </button>
+            </Link>
 
           </div>
         </div>

@@ -25,12 +25,12 @@ const DoctorDetailsPage = async ({ params }) => {
               alt="Doctor Location"
               width={800}
               height={400}
-              className="rounded-lg object-cover h-[570px] "
+              className="rounded-lg object-cover h-[540px] "
             />
           </div>
 
           {/* Content */}
-          <div className="p-6 space-y-6 flex-1">
+          <div className="p-6 space-y-3 flex-1">
             {/* Doctor Info */}
             <div>
               <h2 className="text-xl font-semibold text-gray-800">

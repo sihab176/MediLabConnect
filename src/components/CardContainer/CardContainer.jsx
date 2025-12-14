@@ -19,7 +19,7 @@ const CardContainer = async () => {
   const allData = await fetchData();
 
   return (
-    <div className="my-20 max-w-8xl mx-5">
+    <div className="my-20 max-w-8xl mx-5 ">
       <h2 className="text-3xl font-bold mb-10 text-center">
         Our Dedicated Doctors
       </h2>
