@@ -26,24 +26,6 @@ export default function Home() {
   })
 
   return (
-//    <div className=" ">
-//     <div className="sticky top-0 z-10">
-//       <Navbar/>
-//     </div>
-//  <section id="smooth-wrapper">
-//   <div id="smooth-content">
-//        <Banner/>
-//     <HealthSolutions/>
-//     <CountUpSection/>
-//     <MedicalTeam/>
-//     <ScrollingText/>
-//     <CareProcess/>
-//     <MedicalTreatment/>
-//     {/* <ContactUs/> */}
-//     <Footer/>
-//   </div>
-//  </section>
-//    </div>
     <>
       {/* ✅ Navbar OUTSIDE smoother */}
       <div className="fixed top-0 left-0 w-full z-[999]">

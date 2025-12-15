@@ -1,15 +1,107 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
+import { useEffect } from "react";
 import { FaCheck } from "react-icons/fa";
 
+
+gsap.registerPlugin(ScrollTrigger)
 const MedicalTreatment = () => {
+
+  useEffect(() => {
+  // LEFT SHAPE
+  gsap.fromTo(
+    ".mt-shape",
+    { scale: 0.6, rotate: -15, opacity: 0 },
+    {
+      scale: 1,
+      rotate: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".mt-left",
+        start: "top 80%",
+      },
+    }
+  );
+
+  // LEFT IMAGE
+  gsap.fromTo(
+    ".mt-image",
+    { y: 80, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".mt-left",
+        start: "top 75%",
+      },
+    }
+  );
+
+  // RIGHT CONTENT
+  gsap.fromTo(
+    ".mt-right > *",
+    { x: 60, opacity: 0 },
+    {
+      x: 0,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".mt-right",
+        start: "top 80%",
+      },
+    }
+  );
+
+  // FEATURES
+  gsap.fromTo(
+    ".mt-feature",
+    { y: 30, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      stagger: 0.12,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".mt-feature",
+        start: "top 85%",
+      },
+    }
+  );
+
+  // CTA BUTTON
+  gsap.fromTo(
+    ".mt-btn",
+    { scale: 0.85, opacity: 0 },
+    {
+      scale: 1,
+      opacity: 1,
+      duration: 0.6,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: ".mt-btn",
+        start: "top 90%",
+      },
+    }
+  );
+}, []);
+
+
   return (
     <section className="py-20 px-6 bg-white ">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* LEFT SIDE: DOCTOR IMAGES WITH CLIP-PATH BACKGROUND */}
-        <div className="relative flex justify-center items-center">
+        <div className="mt-left relative flex justify-center items-center">
           {/* Clip-path background */}
           <div
-            className="absolute z-0 w-[420px] h-[420px] bg-[#334d82] opacity-90"
+            className="mt-shape absolute z-0 w-[420px] h-[420px] bg-[#334d82] opacity-90"
             style={{
               clipPath:
                 "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
@@ -17,7 +109,7 @@ const MedicalTreatment = () => {
           />
 
           {/* Doctors Image */}
-          <div className="relative z-4">
+          <div className="mt-image relative z-4">
             <Image
               src="/tow_doc.png"
               alt="Medical Team"
@@ -29,7 +121,7 @@ const MedicalTreatment = () => {
         </div>
 
         {/* RIGHT SIDE: CONTENT */}
-        <div className="flex flex-col space-y-4">
+        <div className="mt-right flex flex-col space-y-4">
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a2b4b] leading-tight">
             We always Insure Best Medical Treatment for your health.
           </h2>
@@ -53,7 +145,7 @@ const MedicalTreatment = () => {
               "Easy Space Nurse",
               "Latest Technology",
             ].map((item, index) => (
-              <div key={index} className="flex items-center gap-3 group">
+              <div key={index} className="mt-feature flex items-center gap-3 group">
                 <div className="text-blue-600 text-xs">
                   <FaCheck />
                 </div>
@@ -66,7 +158,7 @@ const MedicalTreatment = () => {
 
           {/* CTA Button */}
           <div className="pt-6">
-            <button className="bg-[#4161a3] hover:bg-[#334d82] text-white font-bold py-4 px-8 rounded-md transition-all uppercase text-sm tracking-wider">
+            <button className="mt-btn bg-[#4161a3] hover:bg-[#334d82] text-white font-bold py-4 px-8 rounded-md transition-all uppercase text-sm tracking-wider">
               Get a Consultation
             </button>
           </div>

@@ -6,7 +6,9 @@ import React from 'react';
 const AIdoctor = () => {
     return (
         <section>
-            <Navbar/>
+            <div className='sticky top-0 left-0 w-full z-[50]'>
+                <Navbar/>
+            </div>
             <HistoryList/>
             <AiDoctorAgents/>
         </section>
@@ -14,3 +16,6 @@ const AIdoctor = () => {
 };
 
 export default AIdoctor;
+
+
+

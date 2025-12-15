@@ -21,7 +21,7 @@ const CareProcess = () => {
       scrollTrigger: {
         trigger: ".cp-left",
         start: "top 40%",
-        markers:true
+        // markers:true
       },
     }
   );
@@ -51,7 +51,7 @@ const CareProcess = () => {
       x: 0,
       opacity: 1,
       scale: 1,
-      duration: 2,
+      duration: 4,
       ease: "power3.out",
       scrollTrigger: {
         trigger: ".cp-image",
