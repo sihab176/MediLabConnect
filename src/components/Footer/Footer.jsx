@@ -5,7 +5,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer  className="relative bg-[#4bb6c6]  pt-28  ">
+    <footer  className="relative bg-[#4bb6c6]  pt-28   ">
       {/* Smooth Wave Shape */}
   <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
     <svg 

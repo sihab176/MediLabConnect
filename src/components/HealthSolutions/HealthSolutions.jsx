@@ -1,3 +1,6 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { useEffect } from "react";
 import { FaBone, FaTooth, FaBrain, FaHeartbeat } from "react-icons/fa";
 import { GiPelvisBone } from "react-icons/gi";
 
@@ -27,13 +30,47 @@ const services = [
     icon: <FaHeartbeat />,
   },
 ];
-
+gsap.registerPlugin(ScrollTrigger);
 const HealthSolutions = () => {
+
+    useEffect(() => {
+    gsap.fromTo(
+      ".hs-header",
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".hs-header",
+          start: "top 80%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      ".hs-card",
+      { x: -60, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".hs-card",
+          start: "top 85%",
+        },
+      }
+    );
+  }, []);
+
   return (
     <section className="bg-gradient-to-b from-blue-50 to-white py-20 px-6">
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-14">
+        <div className="hs-header flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-14">
           <div>
             <span className="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-4 py-1 rounded-full mb-4">
               Our Department
@@ -58,7 +95,7 @@ const HealthSolutions = () => {
           {services.map((item) => (
             <div
               key={item.id}
-              className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition duration-300 hover:-translate-y-2"
+              className="hs-card group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition duration-300 hover:-translate-y-2"
             >
               <div className="flex items-center justify-between mb-6">
                 <span className="text-sm font-semibold text-blue-300 rounded-full p-4 bg-gray-200">

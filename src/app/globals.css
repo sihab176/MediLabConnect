@@ -9,7 +9,7 @@
   font-weight: 900;
   margin-right: 50px;
   text-transform: uppercase;
-  font-family: sans-serif;
+  
   
   /* টেক্সট আউটলাইন তৈরি করা */
   color: transparent;
@@ -31,50 +31,3 @@
   background-position: 0 0;
   color: #001a41;
 }
-
-
-
-/* @plugin "daisyui";
-@plugin "daisyui/theme" {
-  name: "light";
-  default: true;
-  --color-primary:#caf0f8;
-  --color-secondary: #b3dee2;
-  --color-base-200: #f9fafb;
-  --color-base-300: #e7e7e7;
-  --color-accent: #f3f4f6;
-
-}
-@plugin "daisyui/theme" {
-  name: "dark";
-  
-  --color-primary: #001d3d;
-  --color-secondary: #001d3d;
-  --color-base-200: #000000;
-  --color-base-300: #e7e7e7;
-  --color-accent: black;
-} */
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
-} */
-
-/* @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-} */
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
-/* body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */

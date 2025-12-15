@@ -1,3 +1,4 @@
+"use client"
 import Banner from "@/components/Banner/Banner";
 import CardContainer from "@/components/CardContainer/CardContainer";
 import ContactUs from "@/components/ContactUs/ContactUs";
@@ -9,22 +10,59 @@ import ScrollingText from "./ScrollingText/page";
 import CareProcess from "./CareProcess/page";
 import HealthSolutions from "@/components/HealthSolutions/HealthSolutions";
 import MedicalTreatment from "@/components/MedicalTreatment/MedicalTreatment";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollSmoother, ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger , ScrollSmoother);
 
 export default function Home() {
+
+  useGSAP(()=>{
+    ScrollSmoother.create({
+      smooth:3,
+      effects:true
+    })
+  })
+
   return (
-   <div className=" ">
-    <div className="sticky top-0 z-10">
-      <Navbar/>
-    </div>
-    <Banner/>
-    <HealthSolutions/>
-    <CountUpSection/>
-    <MedicalTeam/>
-    <ScrollingText/>
-    <CareProcess/>
-    <MedicalTreatment/>
-    {/* <ContactUs/> */}
-    <Footer/>
-   </div>
+//    <div className=" ">
+//     <div className="sticky top-0 z-10">
+//       <Navbar/>
+//     </div>
+//  <section id="smooth-wrapper">
+//   <div id="smooth-content">
+//        <Banner/>
+//     <HealthSolutions/>
+//     <CountUpSection/>
+//     <MedicalTeam/>
+//     <ScrollingText/>
+//     <CareProcess/>
+//     <MedicalTreatment/>
+//     {/* <ContactUs/> */}
+//     <Footer/>
+//   </div>
+//  </section>
+//    </div>
+    <>
+      {/* ✅ Navbar OUTSIDE smoother */}
+      <div className="fixed top-0 left-0 w-full z-[999]">
+        <Navbar />
+      </div>
+
+      {/* GSAP Smooth Scroll */}
+      <div id="smooth-wrapper">
+        <div id="smooth-content" className="pt-[80px] ">
+          <Banner />
+          <HealthSolutions />
+          <CountUpSection />
+          <MedicalTeam />
+          <ScrollingText />
+          <CareProcess />
+          <MedicalTreatment />
+          <Footer />
+        </div>
+      </div>
+    </>
   );
 }
