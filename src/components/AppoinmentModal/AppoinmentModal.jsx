@@ -1,4 +1,5 @@
 "use client";
+import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";
@@ -6,19 +7,24 @@ import "react-phone-input-2/lib/style.css";
 
 const AppoinmentModal = ({ isOpen, setIsOpen }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const { data: session } = useSession();
+
+  
 
   //Todo: handle submit --------------->
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const userEmail =await session?.user?.email;
+
+  
     const patientName = e.target.patientName.value;
-    const email = e.target.email.value;
     const gender = e.target.gender.value;
     const chiefComplaint = e.target.chiefComplaint.value;
     const appoinmentData = {
       patientName,
       phoneNumber,
-      email,
+      userEmail,
       gender,
       chiefComplaint,
     };
@@ -34,6 +40,7 @@ const AppoinmentModal = ({ isOpen, setIsOpen }) => {
       toast.success("Appoinment booked successfully");
     }
     setIsOpen(false);
+    console.log(userEmail);
   };
 
   return (
@@ -93,7 +100,7 @@ const AppoinmentModal = ({ isOpen, setIsOpen }) => {
               </div>
 
               {/* Email */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium mb-1">Email</label>
                 <input
                   name="email"
@@ -102,7 +109,7 @@ const AppoinmentModal = ({ isOpen, setIsOpen }) => {
                   className="w-full border  placeholder:text-sm px-3 py-2"
                   placeholder="enter mail"
                 />
-              </div>
+              </div> */}
 
               {/* Gender (Radio) */}
               <div>
@@ -142,7 +149,7 @@ const AppoinmentModal = ({ isOpen, setIsOpen }) => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-[#ade8f4] hover:bg-[#74c6d6] text-white py-2 rounded"
+                className="w-full bg-[#7fe4f8] hover:bg-[#5ec2d6] text-white py-2 rounded"
               >
                 Submit
               </button>

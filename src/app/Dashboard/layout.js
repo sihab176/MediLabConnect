@@ -12,7 +12,8 @@ export default function DashboardLayout({ children }) {
     <div className="flex h-screen bg-gray-100 text-black">
       
       {/* Sidebar for large screens */}
-      <aside className="hidden md:flex md:flex-col w-64 bg-[#b3dee2] shadow-lg">
+      <aside className="hidden lg:flex lg:flex-col w-64 bg-[#b3dee2] shadow-lg">
+        {/* logo */}
         <Link href="/">
         <div className="p-4 text-2xl font-bold border-b flex items-center gap-2"><Image
                     src="/logo.png"
@@ -22,37 +23,61 @@ export default function DashboardLayout({ children }) {
                     className="object-cover"
                   /> <h1 className="text-sky-500 mt-1">MediLab</h1> </div>
         </Link>
+        {/* links */}
         <nav className="flex-1 p-4 space-y-2">
           <Link
             href="/Dashboard"
-            className={`block p-2 rounded hover:bg-gray-200 ${pathname === '/Dashboard' ? 'bg-blue-300' : ''}`}
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard' ? 'bg-blue-300' : ''}`}
           >
             Dashboard
           </Link>
-          {/* <Link
-            href="/Dashboard/PaymentHistory"
-            className={`block p-2 rounded hover:bg-gray-200 ${pathname === '/Dashboard/PaymentHistory' ? 'bg-blue-300' : ''}`}
-          >
-            Payments History
-          </Link>
           <Link
-            href="/dashboard/settings"
-            className="block p-2 rounded hover:bg-gray-200"
+            href="/Dashboard/addDoctors"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/addDoctors' ? 'bg-blue-300' : ''}`}
           >
-            Settings
-          </Link> */}
+            Add Doctors
+          </Link>
+           <Link
+            href="/Dashboard/doctorsMangement"
+            className="block p-2 rounded hover:bg-gray-200 mb-4"
+          >
+            Manage Doctors
+          </Link>
+           <Link
+            href="/Dashboard/userManage"
+            className="block p-2 rounded hover:bg-gray-200 mb-4"
+          >
+            Manage user
+          </Link>
+           <Link
+            href="/Dashboard/feedback"
+            className="block p-2 rounded hover:bg-gray-200 mb-4"
+          >
+            Feedback
+          </Link>
+           <Link
+            href="/Dashboard/PaymentHistory"
+            className="block p-2 rounded hover:bg-gray-200 mb-4"
+          >
+            Payment History
+          </Link>
+           <Link
+            href="/Dashboard/message"
+            className="block p-2 rounded hover:bg-gray-200 mb-4"
+          >
+            Message
+          </Link>
         </nav>
       </aside>
-
-      {/* Mobile sidebar */}
+      {/* ======================================Mobile sidebar================================ */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden transition-opacity ${
+        className={`fixed inset-0 bg-black/20 bg-opacity-40 z-40 md:hidden transition-opacity ${
           sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setSidebarOpen(false)}
       />
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform md:hidden ${
+        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform lg:hidden ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -70,10 +95,16 @@ export default function DashboardLayout({ children }) {
         </div>
         <nav className="p-4 space-y-2">
           <Link
-            href="/dashboard"
+            href="/Dashboard"
             className="block p-2 rounded hover:bg-gray-200"
           >
             Dashboard
+          </Link>
+          <Link
+            href="/Dashboard/doctorsMangement"
+            className="block p-2 rounded hover:bg-gray-200"
+          >
+            Manage Doctors
           </Link>
           <Link
             href="/Dashboard/PaymentHistory"
@@ -96,7 +127,7 @@ export default function DashboardLayout({ children }) {
         <header className="flex items-center justify-between bg-white shadow p-4">
           <div className="flex items-center gap-2">
             <button
-              className="md:hidden p-2 rounded hover:bg-gray-200"
+              className="lg:hidden p-2 rounded hover:bg-gray-200"
               onClick={() => setSidebarOpen(true)}
             >
               ☰
