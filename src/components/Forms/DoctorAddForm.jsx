@@ -139,7 +139,7 @@ const DoctorAddForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white ">
+    <div className="min-h-screen bg-white text-[12px]">
       <div className=" ">
         <div className=" overflow-hidden">
           {/* header */}

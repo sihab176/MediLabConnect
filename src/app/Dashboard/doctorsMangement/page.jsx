@@ -1,17 +1,17 @@
-
-
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CiEdit } from "react-icons/ci";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 const DoctorManagement = () => {
   const [allData, setAllData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [pageReload, setPageReload]=useState(false)
 
-  // ✅ Fetch data correctly
+  //   Fetch data correctly-------------------------->
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,10 +34,10 @@ const DoctorManagement = () => {
     };
 
     fetchData();
-  }, []);
+  }, [pageReload]);
 
-  // ✅ Delete handler
-  const handleDelete = (id) => {
+  //  Delete handler--------------------------------->
+  const handleDelete = async(id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -46,12 +46,23 @@ const DoctorManagement = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+    }).then(async(result) => {
       if (result.isConfirmed) {
         console.log("Deleted id:", id);
-
-        Swal.fire("Deleted!", "Doctor removed successfully.", "success");
-      }
+      try {
+        const res= await fetch(`/api/allDoctors/${id}`,{
+          method:"DELETE",
+        })
+        const data= await res.json()
+        if(data.success){
+          setPageReload(!pageReload)
+          Swal.fire("Deleted!", "Doctor removed successfully.", "success");
+        }else{
+           Swal.fire("Error!", data.message || "Delete failed", "error");
+        }
+      } catch (error) {
+        Swal.fire("Error!", "Server error occurred", "error");
+      }}
     });
   };
 
@@ -120,9 +131,9 @@ const DoctorManagement = () => {
                 </td>
 
                 <td className="px-3 py-4 flex gap-2">
-                  <button className="p-2 hover:bg-gray-200 rounded-full">
+                  <Link href={`/Dashboard/updateDoctor/${doctor._id}`} className="p-2 hover:bg-gray-200 rounded-full">
                     <CiEdit />
-                  </button>
+                  </Link>
 
                   <button
                     onClick={() => handleDelete(doctor._id)}

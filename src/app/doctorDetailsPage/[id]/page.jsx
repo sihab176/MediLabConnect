@@ -1,4 +1,5 @@
 import DoctorDetailsClient from "@/components/DoctorDetailsClient/DoctorDetailsClient";
+import ReviewSection from "@/components/ReviewSection/ReviewSection";
 const DoctorDetailsPage = async ({ params }) => {
   const p = await params;
   const res = await fetch(
@@ -7,7 +8,13 @@ const DoctorDetailsPage = async ({ params }) => {
   );
   const data = await res.json();
 
-  return <DoctorDetailsClient data={data} />;
+  return (
+    <>
+      <DoctorDetailsClient data={data} />
+
+      <ReviewSection doctorId={p}/>
+    </>
+  );
 };
 
 export default DoctorDetailsPage;
