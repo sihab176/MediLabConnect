@@ -27,6 +27,7 @@
     "react-responsive": "^10.0.1",
     "react-responsive-carousel": "^3.2.23",
     "react-simple-star-rating": "^5.1.7",
+    "recharts": "^3.6.0",
     "sweetalert2": "^11.26.10"
   },
   "devDependencies": {

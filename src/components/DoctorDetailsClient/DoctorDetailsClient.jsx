@@ -12,8 +12,8 @@ const DoctorDetailsClient = ({ data }) => {
       <div className="sticky top-0 z-10">
         <Navbar />
       </div>
-      <div className="min-h-screen p-10  mx-5 flex justify-center">
-        <div className=" w-full flex justify-between flex-col md:flex-row  rounded-2xl shadow-lg overflow-hidden">
+      <div className="min-h-screen lg:p-10 lg:mt-0 mt-6 mx-5 ">
+        <div className=" w-full flex justify-between flex-col lg:flex-row  rounded-2xl shadow-lg overflow-hidden">
           {/* Header */}
           <div className="flex-1 lg:mt-7 pl-4">
             <Image
@@ -21,7 +21,7 @@ const DoctorDetailsClient = ({ data }) => {
               alt="Doctor Location"
               width={800}
               height={400}
-              className="rounded-lg object-cover h-[540px] "
+              className="rounded-lg object-cover lg:h-[540px] "
             />
           </div>
 
