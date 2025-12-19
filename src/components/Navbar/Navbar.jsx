@@ -59,6 +59,13 @@ const Navbar = () => {
       </li>
       <li
         className={`mx-4 ${
+          pathname == "/BloodBank" ? "text-sky-500 font-bold border-b-2" : ""
+        }`}
+      >
+        <Link href="/BloodBank">Blood Bank</Link>
+      </li>
+      <li
+        className={`mx-4 ${
           pathname == "/Contact" ? "text-sky-500 font-bold border-b-2" : ""
         }`}
       >

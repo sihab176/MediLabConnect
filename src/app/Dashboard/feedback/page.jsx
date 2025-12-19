@@ -299,10 +299,10 @@ const ReviewTable = () => {
             <select
               value={ratingFilter}
               onChange={(e) => setRatingFilter(e.target.value)}
-              className="border rounded px-3 py-1.5 text-sm"
+              className="border border-gray-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-teal-500  px-3 py-1.5 text-sm"
             >
               <option>Any rating</option>
-              <option>5 stars</option>
+              <option >5 stars</option>
               <option>4 stars</option>
               <option>3 stars</option>
               <option>2 stars</option>
@@ -316,7 +316,7 @@ const ReviewTable = () => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search reviews..."
-            className="flex-1 border rounded px-3 py-1.5 text-sm"
+            className="flex-1 border border-gray-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-teal-500 px-3 py-1.5 text-sm"
           />
 
           <button
