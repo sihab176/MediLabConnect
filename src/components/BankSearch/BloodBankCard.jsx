@@ -2,13 +2,25 @@
 
 import { FaMapMarkerAlt, FaPhoneAlt, FaClock } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
+import BloodBookingModal from "./BloodBookingModal";
+import { useState } from "react";
 
 export default function BloodBankCard({ searchResults }) {
-  console.log("this is search result", searchResults);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBank, setSelectedBank] = useState(null);
+
+  const handleBookNow = (bank) => {
+    setSelectedBank(bank);
+    setIsModalOpen(true);
+  };
+
   return (
     <>
-      {searchResults.banks.map((bank, index) => (
-        <div key={index} className="max-w-full rounded-2xl border border-red-200 bg-red-50 p-6 shadow-sm my-4">
+      {searchResults?.banks?.map((bank, index) => (
+        <div
+          key={index}
+          className="max-w-full rounded-2xl border border-red-200 hover:bg-red-50  p-6 shadow-sm my-4"
+        >
           {/* Header */}
           <div className="flex items-center justify-between">
             <h2 className="flex items-center gap-2 text-lg font-semibold text-gray-800">
@@ -34,15 +46,16 @@ export default function BloodBankCard({ searchResults }) {
             </p>
 
             <div className="flex flex-wrap gap-2">
-              <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
-               {searchResults.bloodGroup}
-              </span>
-              {/* <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
-                AB+ (12)
-              </span>
-              <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-600">
-                O- (2)
-              </span> */}
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(bank.bloodTypes).map(([type, count]) => (
+                  <span
+                    key={type}
+                    className="rounded-full border border-green-300 bg-green-50 px-4 py-1 text-sm font-semibold text-green-700"
+                  >
+                    {type} ({count})
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -55,16 +68,22 @@ export default function BloodBankCard({ searchResults }) {
 
             <div className="flex items-center gap-2">
               <FaClock />
-              8AM - 10PM
+              {bank.hours}
             </div>
           </div>
 
           {/* Button */}
-          <button className="mt-5 w-full rounded-xl bg-red-400 py-3 text-white font-semibold transition hover:bg-red-500">
+          <button onClick={()=>handleBookNow(bank)} className="mt-5 w-full rounded-xl bg-red-400 py-3 text-white font-semibold transition hover:bg-red-500">
             Book Now
           </button>
         </div>
       ))}
+      <BloodBookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        bank={selectedBank}
+        searchResults={searchResults}
+      />
     </>
   );
 }

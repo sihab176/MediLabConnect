@@ -12,7 +12,7 @@ const BankSearch=()=> {
   const [loading, setLoading] = useState(false);
 
   const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-  const locations = ['Philadelphia', 'New York', 'Boston', 'Washington DC', 'Baltimore'];
+  const locations = ["location",'Rangpur', 'Dhaka', 'Chattogram', 'Rajshahi', 'Sylhet'];
   const availabilityOptions = ['Urgent Need', 'Available',];
 
   const handleQuickSelect = (type) => {
@@ -42,6 +42,8 @@ const BankSearch=()=> {
       setLoading(false);
     }
   };
+
+  console.log("search result",searchResults)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -90,6 +92,7 @@ const BankSearch=()=> {
                 className="px-4 py-3 border-2 border-gray-200 rounded-lg text-gray-800 bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
               >
                 {locations.map((loc) => (
+                  
                   <option key={loc} value={loc}>
                     {loc}
                   </option>
@@ -164,33 +167,3 @@ const BankSearch=()=> {
 }
 
 export default BankSearch
-
-//   <div className="mt-8 pt-6 border-t border-gray-200">
-//               <h3 className="text-xl font-bold text-gray-900 mb-2">Search Results</h3>
-//               <p className="text-gray-600 mb-4">
-//                 Found {searchResults.count} blood banks with {bloodGroup} in {location}
-//               </p>
-//               {searchResults.banks && searchResults.banks.map((bank, index) => (
-//                 <div
-//                   key={index}
-//                   className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-3 hover:shadow-md transition-shadow"
-//                 >
-//                   <h4 className="font-semibold text-gray-900 mb-1">{bank.name}</h4>
-//                   <p className="text-gray-600 text-sm mb-2">{bank.address}</p>
-//                   <p className="text-sm">
-//                     Status:{' '}
-//                     <span
-//                       className={`font-semibold ${
-//                         bank.status === 'Available'
-//                           ? 'text-green-600'
-//                           : bank.status === 'Low Stock'
-//                           ? 'text-yellow-600'
-//                           : 'text-red-600'
-//                       }`}
-//                     >
-//                       {bank.status}
-//                     </span>
-//                   </p>
-//                 </div>
-//               ))}
-//             </div>

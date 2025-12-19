@@ -37,6 +37,12 @@ export default function DashboardLayout({ children }) {
           >
             Add Doctors
           </Link>
+          <Link
+            href="/Dashboard/addBlood"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/addDoctors' ? 'bg-blue-300' : ''}`}
+          >
+            Add Blood Bank
+          </Link>
            <Link
             href="/Dashboard/doctorsMangement"
             className="block p-2 rounded hover:bg-gray-200 mb-4"
