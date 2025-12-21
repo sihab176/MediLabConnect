@@ -1,19 +1,29 @@
-
-"use client"
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 import { TbPointFilled } from "react-icons/tb";
-import BloodBankCard from './BloodBankCard';
+import BloodBankCard from "./BloodBankCard";
 
-const BankSearch=()=> {
-  const [bloodGroup, setBloodGroup] = useState('AB+');
-  const [location, setLocation] = useState('Philadelphia');
-  const [availability, setAvailability] = useState('Urgent Need');
+const BankSearch = () => {
+  const [bloodGroup, setBloodGroup] = useState("AB+");
+  const [location, setLocation] = useState("Philadelphia");
+  const [availability, setAvailability] = useState("Urgent Need");
   const [searchResults, setSearchResults] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-  const locations = ["location",'Rangpur', 'Dhaka', 'Chattogram', 'Rajshahi', 'Sylhet'];
-  const availabilityOptions = ['Urgent Need', 'Available',];
+  const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+  const locations = [
+    "location",
+    "Rangpur",
+    "Dhaka",
+    "Chattogram",
+    "Rajshahi",
+    "Sylhet",
+    "Bogura",
+    "Mymensingh",
+    "Cumilla",
+    "Khulna",
+  ];
+  const availabilityOptions = ["Urgent Need", "Available"];
 
   const handleQuickSelect = (type) => {
     setBloodGroup(type);
@@ -22,10 +32,10 @@ const BankSearch=()=> {
   const handleSearch = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/search-blood', {
-        method: 'POST',
+      const response = await fetch("/api/search-blood", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           bloodGroup,
@@ -37,18 +47,18 @@ const BankSearch=()=> {
       const data = await response.json();
       setSearchResults(data);
     } catch (error) {
-      console.error('Search failed:', error);
+      console.error("Search failed:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  console.log("search result",searchResults)
+  console.log("search result", searchResults);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-dashed border-gray-200">
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
@@ -70,7 +80,7 @@ const BankSearch=()=> {
               <select
                 value={bloodGroup}
                 onChange={(e) => setBloodGroup(e.target.value)}
-                className="px-4 py-3 border-2 border-gray-200 rounded-lg text-gray-800 bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
+                className="px-4 py-3 border-2 border-gray-200 rounded-lg text-gray-800 bg-white focus:outline-none focus:border-[#4161a3] focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
               >
                 {bloodTypes.map((type) => (
                   <option key={type} value={type}>
@@ -89,10 +99,9 @@ const BankSearch=()=> {
               <select
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                className="px-4 py-3 border-2 border-gray-200 rounded-lg text-gray-800 bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
+                className="px-4 py-3 border-2 border-gray-200 rounded-lg text-gray-800 bg-white focus:outline-none focus:border-[#4161a3] focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
               >
                 {locations.map((loc) => (
-                  
                   <option key={loc} value={loc}>
                     {loc}
                   </option>
@@ -109,12 +118,12 @@ const BankSearch=()=> {
               <select
                 value={availability}
                 onChange={(e) => setAvailability(e.target.value)}
-                className="px-4 py-3 border-2 border-gray-200 rounded-lg text-gray-800 bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
+                className="px-4 py-3 border-2 border-gray-200 rounded-lg text-gray-800 bg-white focus:outline-none focus:border-[#4161a3] focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
               >
                 {availabilityOptions.map((option) => (
                   <option key={option} value={option}>
-                    {option === 'Urgent Need' && '🔴 '}
-                    {option === 'Available' && '🟢 '}
+                    {option === "Urgent Need" && "🔴 "}
+                    {option === "Available" && "🟢 "}
                     {option}
                   </option>
                 ))}
@@ -126,17 +135,19 @@ const BankSearch=()=> {
               <button
                 onClick={handleSearch}
                 disabled={loading}
-                className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+                className="w-full px-6 py-3 bg-[#4161a3] hover:bg-[#334d82] text-white font-bold rounded  focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
               >
-                <span>🔍</span>
-                {loading ? 'Searching...' : 'Search'}
+                
+                {loading ? "Searching..." : "Search"}
               </button>
             </div>
           </div>
 
           {/* Quick Select Blood Type */}
           <div className="border-t border-gray-200 pt-6">
-            <p className="text-sm text-gray-600 mb-3">Quick select blood type:</p>
+            <p className="text-sm text-gray-600 mb-3">
+              Quick select blood type:
+            </p>
             <div className="flex flex-wrap gap-3">
               {bloodTypes.map((type) => (
                 <button
@@ -144,8 +155,8 @@ const BankSearch=()=> {
                   onClick={() => handleQuickSelect(type)}
                   className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                     bloodGroup === type
-                      ? 'bg-red-600 text-white border-2 border-red-600'
-                      : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-blue-500 hover:text-blue-600'
+                      ? "bg-red-600 text-white border-2 border-red-600"
+                      : "bg-white text-gray-700 border-2 border-gray-300 hover:border-blue-500 hover:text-blue-600"
                   }`}
                 >
                   {type}
@@ -155,15 +166,24 @@ const BankSearch=()=> {
           </div>
 
           {/*================================ Search Results =============================*/}
-          {searchResults && (
-            <div className="mt-8 pt-6 border-t border-gray-200">
-                <BloodBankCard searchResults={searchResults}/>
-            </div>
-          )}
+          <div>
+            {searchResults?.banks?.length === 0 ? (
+              <p className="text-center text-2xl font-semibold text-gray-500 mt-8 pt-6 border-t border-gray-200">No results found</p>
+            ) : (
+              <div>
+                {" "}
+                {searchResults && (
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    <BloodBankCard searchResults={searchResults} />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default BankSearch
+export default BankSearch;

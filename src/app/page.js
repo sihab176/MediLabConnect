@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       {/* ✅ Navbar OUTSIDE smoother */}
-      <div className="fixed top-0 left-0 w-full z-[999]">
+      <div className="fixed top-0 left-0 w-full z-[50]">
         <Navbar />
       </div>
 

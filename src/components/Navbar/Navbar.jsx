@@ -45,6 +45,13 @@ const Navbar = () => {
       </li>
       <li
         className={`mx-4 ${
+          pathname == "/BloodBank" ? "text-sky-500 font-bold border-b-2" : ""
+        }`}
+      >
+        <Link href="/BloodBank">Blood Bank</Link>
+      </li>
+      <li
+        className={`mx-4 ${
           pathname == "/Dashboard" ? "text-sky-500 font-bold border-b-2" : ""
         }`}
       >
@@ -57,13 +64,7 @@ const Navbar = () => {
       >
         <Link href="/OurTeam">Our teams</Link>
       </li>
-      <li
-        className={`mx-4 ${
-          pathname == "/BloodBank" ? "text-sky-500 font-bold border-b-2" : ""
-        }`}
-      >
-        <Link href="/BloodBank">Blood Bank</Link>
-      </li>
+
       <li
         className={`mx-4 ${
           pathname == "/Contact" ? "text-sky-500 font-bold border-b-2" : ""
@@ -107,7 +108,7 @@ const Navbar = () => {
           <Link href="/">
             <div className="text-2xl font-bold flex items-center gap-2">
               <Image
-                src="/logo.png"
+                src="/healthService.png"
                 alt="logo"
                 width={40}
                 height={40}
@@ -151,7 +152,9 @@ const Navbar = () => {
             </button>
           ) : (
             <Link href="/login">
-              <button className="btn btn-sm bg-sky-700 border-0 text-white">Login</button>
+              <button className="btn btn-sm bg-sky-700 border-0 text-white">
+                Login
+              </button>
             </Link>
           )}
         </div>
