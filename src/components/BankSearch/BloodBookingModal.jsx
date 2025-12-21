@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaMapMarkerAlt, FaPhoneAlt, FaClock } from "react-icons/fa";
 import { MdVerified, MdClose } from "react-icons/md";
+import {  FaDownload, FaHome } from "react-icons/fa";
 
 // Booking Modal Component
 const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
@@ -43,7 +44,7 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
     : 0;
 
   const handleBloodSelect = (type) => {
-    console.log("select blood", type);
+    // console.log("select blood", type);
     setBookingData({ ...bookingData, bloodType: type, units: 1 });
   };
 
@@ -88,7 +89,7 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
   const handleSubmit = async () => {
     setLoading(true);
     setError("");
-    console.log("bookingData",bookingData)
+    console.log("bookingData-->", bookingData);
 
     try {
       const response = await fetch("/api/book-blood", {
@@ -102,19 +103,20 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success("Booking successful! Booking ID: " + data.bookingId)
-        onClose();
+        toast.success("Booking successful!");
+        // onClose();
+        setStep(4);
         // Reset form
-        setStep(1);
-        setBookingData({
-          bloodType: "",
-          units: 1,
-          patientName: "",
-          patientId: "",
-          hospitalName: "",
-          bankId: bank?.id || "",
-          bankName: bank?.name || "Regional Medical Center",
-        });
+        // setStep(1);
+        // setBookingData({
+        //   bloodType: "",
+        //   units: 1,
+        //   patientName: "",
+        //   patientId: "",
+        //   hospitalName: "",
+        //   bankId: bank?.id || "",
+        //   bankName: bank?.name || "Regional Medical Center",
+        // });
       } else {
         setError(data.message || "Booking failed");
       }
@@ -123,6 +125,11 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // ✅ Download receipt
+  const handleDownloadReceipt = () => {
+    window.print();
   };
 
   return (
@@ -149,7 +156,7 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center">
             <div
-              className={`flex h-10 w-10 items-center justify-center rounded-full ${
+              className={`flex h-10 w-10 p-1 items-center justify-center rounded-full ${
                 step >= 1
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-500"
@@ -158,7 +165,7 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
               {step > 1 ? "✓" : "💉"}
             </div>
             <div className="ml-2">
-              <p className="text-xs text-gray-500">Select Blood</p>
+              <p className="text-[9px] text-gray-500">Select Blood</p>
             </div>
           </div>
 
@@ -179,7 +186,7 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
               {step > 2 ? "✓" : "👤"}
             </div>
             <div className="ml-2">
-              <p className="text-xs text-gray-500">Patient Info</p>
+              <p className="text-[9px] text-gray-500">Patient Info</p>
             </div>
           </div>
 
@@ -197,10 +204,10 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
                   : "bg-gray-200 text-gray-500"
               }`}
             >
-              📋
+              {step > 2 ? "✓" : "📋"}
             </div>
             <div className="ml-2">
-              <p className="text-xs text-gray-500">Confirm</p>
+              <p className="text-[9px] text-gray-500">Confirm</p>
             </div>
           </div>
         </div>
@@ -209,6 +216,67 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
         {error && (
           <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600">
             {error}
+          </div>
+        )}
+        {/*//TODO ---------------- STEP 4 ---------------- */}
+        {step === 4 && (
+          <div className="text-center print:p-0">
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 text-3xl">
+              ✓
+            </div>
+
+            <h2 className=" font-bold text-gray-800">
+              Booking Confirmed!
+            </h2>
+            <p className="mb-6 text-[11px] text-gray-500">
+              Your blood booking has been successfully processed
+            </p>
+
+            <div className="mb-6 rounded-lg bg-gray-50 p-4 text-left space-y-2  text-[13px]">
+              <p>
+                <span className="text-gray-500">Patient ID:</span>{" "}
+                <span className="font-semibold text-blue-600">{bookingData.patientId}</span>
+              </p>
+              <p>
+                <span className="text-gray-500">Blood Bank:</span>{" "}
+                {bookingData.bankName}
+              </p>
+              <p>
+                <span className="text-gray-500">Blood Group:</span>{" "}
+                <span className="font-semibold text-red-500">
+                  {bookingData.bloodType}
+                </span>
+              </p>
+              <p>
+                <span className="text-gray-500">Units:</span>{" "}
+                {bookingData.units}
+              </p>
+              <p>
+                <span className="text-gray-500">Patient:</span>{" "}
+                {bookingData.patientName}
+              </p>
+            </div>
+
+            <div className="mb-4 rounded-lg bg-blue-50 p-3 text-[11px] text-blue-700">
+              Please visit the blood bank within 24 hours with your Booking ID
+              and valid ID proof.
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={handleDownloadReceipt}
+                className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-blue-500 py-3 font-semibold text-blue-600 hover:bg-blue-50"
+              >
+                <FaDownload /> Download Receipt
+              </button>
+
+              <button
+                onClick={onClose}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-500 py-3 font-semibold text-white hover:bg-blue-600"
+              >
+                <FaHome /> Back Home
+              </button>
+            </div>
           </div>
         )}
 
@@ -268,8 +336,8 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
 
         {/* Step 2: Patient Info */}
         {step === 2 && (
-          <div>
-            <h3 className="mb-4 font-semibold text-gray-700">Patient Name</h3>
+          <div className="text-[13px]">
+            <h3 className="mb-4 font-semibold  text-gray-700">Patient Name</h3>
             <input
               type="text"
               name="patientName"
@@ -327,7 +395,7 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
               Confirm Booking
             </h3>
 
-            <div className="mb-6 space-y-3 rounded-lg bg-gray-50 p-4">
+            <div className="mb-6 space-y-3 text-[13px] rounded-lg bg-gray-50 p-4">
               <div className="flex justify-between">
                 <span className="text-gray-600">Blood Group:</span>
                 <span className="font-semibold text-red-500">

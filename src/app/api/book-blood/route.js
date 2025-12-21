@@ -4,14 +4,14 @@ import { NextResponse } from "next/server"
 
 
 export const GET =async(req,{params})=>{
-    const doctorsCollection=dbConnect("bookBloods")
-    const result = await doctorsCollection.find().toArray()
+    const bloodsCollection=dbConnect("bookBloods")
+    const result = await bloodsCollection.find({}).sort({_id:-1}).limit(7).toArray()
     return NextResponse.json(result)
 }
 
 export const POST =async(req,{params})=>{
     const data= await req.json()
-    const doctorsCollection=dbConnect("bookBloods")
-    const result= await doctorsCollection.insertOne(data)
+    const bloodsCollection=dbConnect("bookBloods")
+    const result= await bloodsCollection.insertOne(data)
     return NextResponse.json(result)
 }

@@ -62,10 +62,10 @@ export default function DashboardLayout({ children }) {
             Feedback
           </Link>
            <Link
-            href="/Dashboard/PaymentHistory"
+            href="/Dashboard/BloodRequestTable"
             className="block p-2 rounded hover:bg-gray-200 mb-4"
           >
-            Payment History
+           BloodRequestTable
           </Link>
            <Link
             href="/Dashboard/message"

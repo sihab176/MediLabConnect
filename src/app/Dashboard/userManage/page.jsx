@@ -64,7 +64,7 @@ const UserManage = () => {
 
   return (
     <div
-      className="container p-2 mx-auto sm:p-4 dark:text-gray-800"
+      className="container  mx-auto  dark:text-gray-800 bg-white rounded-xl shadow-sm border border-gray-100"
       bis_skin_checked="1"
     >
       <div className="overflow-x-auto" bis_skin_checked="1">
@@ -76,10 +76,10 @@ const UserManage = () => {
             <col />
             <col />
             <col />
-            <col className="w-5" />
+            {/* <col className="w-5" /> */}
           </colgroup>
           <thead>
-            <tr className="dark:bg-gray-300">
+            <tr className="bg-gray-100 text-gray-600 uppercase text-sm w-full">
               <th className="p-3 hidden sm:table-cell">ID</th>
               <th className="p-3 hidden sm:table-cell">Name</th>
               <th className="p-3 hidden sm:table-cell">Role</th>
@@ -91,25 +91,25 @@ const UserManage = () => {
               </th>
             </tr>
           </thead>
-          <tbody className="border-b dark:bg-gray-50 dark:border-gray-300">
+          <tbody className="border-b ">
             {users.map((user) => (
-              <tr key={user._id} className="border-b border-gray-400 ">
-                <td className="px-3  font-medium dark:text-gray-600 hidden sm:table-cell">
+              <tr key={user._id} className="border-b border-gray-200 lg:text-sm ">
+                <td className="px-3 py-8 font-medium dark:text-gray-600 hidden sm:table-cell">
                   {user._id}
                 </td>
-                <td className="px-3 py-4 hidden sm:table-cell">
+                <td className="px-3 py-8 hidden sm:table-cell">
                   <p>{user.name}</p>
                 </td>
-                <td className="px-3 py-4 hidden sm:table-cell">
+                <td className="px-3 py-8 hidden sm:table-cell">
                   <span>{user.role}</span>
                 </td>
-                <td className="px-3 py-4 hidden sm:table-cell  md:hidden lg:block">
+                <td className="px-3 py-8 hidden sm:table-cell  md:hidden lg:block">
                   <p>{user.phone}</p>
                 </td>
-                <td className="px-3 py-4">
+                <td className="px-3 py-8">
                   <p>{user.email}</p>
                 </td>
-                <td className="px-3 py-4">
+                <td className="px-3 py-8">
                   <button onClick={()=>handleDelete(user._id)} className="btn bg-red-500 hover:bg-red-600 btn-sm border-0 text-white w-14 h-6 rounded">
                     Delete
                   </button>

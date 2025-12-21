@@ -6,3 +6,5 @@ const paymentHistoryPage = () => {
 };
 
 export default paymentHistoryPage;
+
+
