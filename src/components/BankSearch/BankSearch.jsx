@@ -56,7 +56,7 @@ const BankSearch = () => {
   console.log("search result", searchResults);
 
   return (
-    <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className=" bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-dashed border-gray-200">
           {/* Header */}

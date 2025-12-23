@@ -1,5 +1,6 @@
 import BankSearch from '@/components/BankSearch/BankSearch'
 import BloodHeroSection from '@/components/BankSearch/BloodHeroSection'
+import HowItWorks from '@/components/BankSearch/HowItWorks'
 import Footer from '@/components/Footer/Footer'
 import Navbar from '@/components/Navbar/Navbar'
 import React from 'react'
@@ -12,6 +13,7 @@ const page = () => {
         </div>
         <BloodHeroSection/>
         <BankSearch/>
+        <HowItWorks/>
         <Footer/>
     </div>
   )

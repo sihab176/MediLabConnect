@@ -30,12 +30,12 @@ import StatsCards from "./StatsCards";
 import OverviewChart from "./OverviewChart";
 
 const DashboardHomePages = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(false);
   const [bloodData, setBloodData] = useState([]);
 
   useEffect(() => {
     const bloodDataFun = async () => {
-      const res = await fetch("/api/book-blood");
+      const res = await fetch("/api/book-blood?limit=6");
       const data = await res.json();
       // console.log("data", data)
       setBloodData(data);
@@ -43,63 +43,20 @@ const DashboardHomePages = () => {
     bloodDataFun();
   }, []);
 
-  // console.log(bloodData)
-
-
-
-  const recentActivities = [
-    {
-      id: 1,
-      icon: <FaUsers className="text-teal-500" size={20} />,
-      title: "New Patient Registered",
-      description: "Robert Smith completed registration form",
-      time: "5 min ago",
-      bgColor: "bg-teal-50",
-    },
-    {
-      id: 2,
-      icon: <FaCalendarAlt className="text-blue-500" size={20} />,
-      title: "New Message",
-      description: "Emma Thompson sent a follow up question",
-      time: "10 min ago",
-      bgColor: "bg-blue-50",
-    },
-    {
-      id: 3,
-      icon: <FaFileAlt className="text-yellow-500" size={20} />,
-      title: "Lab Results Ready",
-      description: "Blood work results for Michael Chen available",
-      time: "1 hour ago",
-      bgColor: "bg-yellow-50",
-    },
-    {
-      id: 4,
-      icon: <FaDollarSign className="text-purple-500" size={20} />,
-      title: "Prescription Filled",
-      description: "Sarah Williams picked up medication",
-      time: "2 hours ago",
-      bgColor: "bg-purple-50",
-    },
-  ];
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "Completed":
-        return "bg-teal-500 text-white";
-      case "In Progress":
-        return "bg-teal-500 text-white";
-      case "Upcoming":
-        return "bg-orange-400 text-white";
-      default:
-        return "bg-gray-500 text-white";
-    }
+  const getCurrentTime = () => {
+    return new Date().toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
   };
 
   return (
     <div className=" bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex lg:flex-row flex-col items-center justify-between">
           <div>
             <p className="text-sm text-gray-500">Friday, December 19, 2025</p>
             <h1 className="text-2xl font-bold text-gray-900">
@@ -126,13 +83,24 @@ const DashboardHomePages = () => {
                 size={16}
               />
             </div>
-            <button className="p-2 rounded-lg hover:bg-gray-100 relative">
-              <FaClock className="text-gray-600" size={20} />
-            </button>
-            <button className="p-2 rounded-lg hover:bg-gray-100 relative">
+            <div className="relative inline-block">
+              <button
+                onClick={() => setSelectedDate(!selectedDate)}
+                className="p-2 rounded-lg hover:bg-gray-100 relative"
+              >
+                <FaClock className="text-gray-600" size={20} />
+              </button>
+              {selectedDate && (
+                <div className="w-40 h-10 absolute top-10 flex justify-center items-center gap-3 right-0 bg-white shadow-md border border-gray-200 rounded-lg px-3 py-1 text-sm text-purple-600">
+                 <span className="text-gray-400">TIME: </span> {getCurrentTime()}
+                </div>
+              )}
+            </div>
+
+            {/* <button className="p-2 rounded-lg hover:bg-gray-100 relative">
               <FaBell className="text-gray-600" size={20} />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
+            </button> */}
           </div>
         </div>
       </header>
@@ -143,12 +111,12 @@ const DashboardHomePages = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/*//TODO ============================== Weekly Overview Chart ================*/}
-          <div className="lg:col-span-2 bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          <div className="lg:col-span-3 col-span-1 bg-white rounded-xl shadow-sm p-6 border border-gray-100">
             <OverviewChart />
           </div>
 
           {/*//TODO ============================== Recent Activity ======================*/}
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          {/* <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-semibold text-gray-900">
                 Recent Activity
@@ -179,7 +147,7 @@ const DashboardHomePages = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/*//TODO ================================= Today's Schedule and Quick Actions ===*/}
@@ -191,9 +159,7 @@ const DashboardHomePages = () => {
                 <h3 className="text-lg font-semibold text-gray-900">
                   Today's Schedule
                 </h3>
-                <p className="text-sm text-gray-500">
-                  4 appointments scheduled
-                </p>
+                <p className="text-sm text-gray-500">Blood booking scheduled</p>
               </div>
               <button className="text-sm text-teal-500 hover:text-teal-600 font-medium">
                 View All
@@ -215,13 +181,23 @@ const DashboardHomePages = () => {
                       {appointment.patientName}
                     </h4>
                     <div className="flex items-center gap-4 mt-1 text-[11px] text-gray-400">
-                        <p>{appointment.hospitalName}</p>
+                      <p>{appointment.hospitalName}</p>
                     </div>
                   </div>
                   <span
-                    className={`px-4 py-2 rounded-full text-xs font-medium bg-amber-100`}
+                    className={`px-4 py-2 rounded-full text-xs font-medium
+    ${
+      appointment.status === "pending"
+        ? "bg-amber-100 text-amber-700"
+        : appointment.status === "in progress"
+        ? "bg-blue-100 text-blue-700"
+        : appointment.status === "complete"
+        ? "bg-green-100 text-green-700"
+        : "bg-gray-100 text-gray-600"
+    }
+  `}
                   >
-                    Pending...
+                    {appointment.status}
                   </span>
                 </div>
               ))}

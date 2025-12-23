@@ -50,6 +50,12 @@ export default function DashboardLayout({ children }) {
             Manage Doctors
           </Link>
            <Link
+            href="/Dashboard/manageBlood"
+            className="block p-2 rounded hover:bg-gray-200 mb-4"
+          >
+            Manage Blood Bank
+          </Link>
+           <Link
             href="/Dashboard/userManage"
             className="block p-2 rounded hover:bg-gray-200 mb-4"
           >

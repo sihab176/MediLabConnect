@@ -1,38 +1,54 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 
 const BloodRequestTable = () => {
   // Initializing state with your provided data
-  const [requests, setRequests] = useState([
-    {
-      _id: "6946f7d5f2a9d0271a33e03f",
-      bloodType: "B+",
-      units: 3,
-      patientName: "Md Shafiul Islam",
-      patientId: "660-03-8360A-c",
-      hospitalName: "Blood Donors Club",
-      bankId: "6946c513f79955165ec8f4fa",
-      bankName: "Mymensingh Life Care",
-      status: "pending",
-    },
-  ]);
-    const [bloodData, setBloodData] = useState([]);
-  
-    useEffect(() => {
-      const bloodDataFun = async () => {
-        const res = await fetch("/api/book-blood");
-        const data = await res.json();
-        // console.log("data", data)
-        setBloodData(data);
-      };
-      bloodDataFun();
-    }, []);
+  const [pageUpdate, setPageUpdate] = useState(false);
 
-  const handleStatusChange = (id, newStatus) => {
-    setRequests((prev) =>
-      prev.map((req) => (req._id === id ? { ...req, status: newStatus } : req))
-    );
-    console.log(`Updated ID ${id} to ${newStatus}`);
+  const [bloodData, setBloodData] = useState([]);
+
+  useEffect(() => {
+    const bloodDataFun = async () => {
+      const res = await fetch("/api/book-blood");
+      const data = await res.json();
+      // console.log("data", data)
+      setBloodData(data);
+    };
+    bloodDataFun();
+  }, [pageUpdate]);
+
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      const res = await fetch("http://localhost:3000/api/book-blood", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json", // ✅ fixed
+        },
+        body: JSON.stringify({
+          id: id, // ✅ key name correct
+          status: newStatus, // ✅ backend expects "status"
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error("Update failed:", data);
+        return;
+      }
+
+      setPageUpdate(true);
+      console.log(`Updated ID ${id} to ${newStatus}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const statusStyles = {
+    pending: "bg-amber-100 text-amber-800 focus:ring-amber-300",
+    approved: "bg-blue-100 text-blue-800 focus:ring-blue-300",
+    Approved: "bg-blue-100 text-blue-800 focus:ring-blue-300",
+    completed: "bg-green-100 text-green-800 focus:ring-green-300",
   };
 
   return (
@@ -80,18 +96,23 @@ const BloodRequestTable = () => {
                     {req.units}
                   </td>
                   <td className="px-6 py-4 text-center">
-                    pending
-                    {/* <select
+                    <select
                       value={req.status}
                       onChange={(e) =>
                         handleStatusChange(req._id, e.target.value)
                       }
-                      className="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full border-none focus:ring-2 focus:ring-yellow-300 cursor-pointer appearance-none text-center"
+                      className={`text-sm font-medium px-4 py-1 rounded-full border-none 
+      cursor-pointer appearance-none text-center
+      ${
+        statusStyles[req.status] ||
+        "bg-gray-100 text-gray-700 focus:ring-gray-300"
+      }
+    `}
                     >
-                      <option value="pending">Pending...</option>
+                      <option value="pending">Pending</option>
                       <option value="approved">Approved</option>
                       <option value="completed">Completed</option>
-                    </select> */}
+                    </select>
                   </td>
                 </tr>
               ))}
@@ -101,7 +122,7 @@ const BloodRequestTable = () => {
 
         {/* Mobile View: Card Style (Matching your image) */}
         <div className="md:hidden space-y-4">
-          {requests.map((req) => (
+          {bloodData.map((req) => (
             <div
               key={req._id}
               className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between"
@@ -121,14 +142,25 @@ const BloodRequestTable = () => {
                 </div>
               </div>
               <div className="flex flex-col items-end">
-                <select
-                  value={req.status}
-                  onChange={(e) => handleStatusChange(req._id, e.target.value)}
-                  className="bg-yellow-100 text-yellow-800 text-xs font-medium py-2 px-4 rounded-full border-none focus:ring-0 cursor-pointer"
-                >
-                  <option value="pending">Pending...</option>
-                  <option value="approved">Approved</option>
-                </select>
+                <td className="px-6 py-4 text-center">
+                  <select
+                    value={req.status}
+                    onChange={(e) =>
+                      handleStatusChange(req._id, e.target.value)
+                    }
+                    className={`text-sm font-medium px-4 py-1 rounded-full border-none 
+      cursor-pointer appearance-none text-center
+      ${
+        statusStyles[req.status] ||
+        "bg-gray-100 text-gray-700 focus:ring-gray-300"
+      }
+    `}
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </td>
               </div>
             </div>
           ))}

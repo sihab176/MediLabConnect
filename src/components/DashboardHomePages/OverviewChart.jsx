@@ -16,7 +16,7 @@ const OverviewChart = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/book-blood")
+    fetch("/api/book-blood?limit=6")
       .then((res) => res.json())
       .then((data) => {
         // 🔥 Recharts compatible format

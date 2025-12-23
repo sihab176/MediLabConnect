@@ -225,14 +225,16 @@
 // };
 // export default ReviewTable;
 
-
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import Image from "next/image";
+import Swal from "sweetalert2";
 
 const ReviewTable = () => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [ratingFilter, setRatingFilter] = useState("Any rating");
   const [searchText, setSearchText] = useState("");
   const [showCount, setShowCount] = useState(20);
@@ -248,7 +250,7 @@ const ReviewTable = () => {
       setReviewData(data);
     };
     reviewFun();
-  }, []);
+  }, [pageLoad]);
 
   // 🔹 Stars render
   const renderStars = (rating) =>
@@ -288,6 +290,36 @@ const ReviewTable = () => {
       .slice(0, showCount);
   }, [reviewData, ratingFilter, searchText, showCount]);
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        console.log("Deleted id:", id);
+        try {
+          const res = await fetch(`/api/feedbackReviews/${id}`, {
+            method: "DELETE",
+          });
+          const data = await res.json();
+          if (data.success) {
+            setPageLoad(!pageLoad);
+            Swal.fire("Deleted!", "Review removed successfully.", "success");
+          } else {
+            Swal.fire("Error!", data.message || "Delete failed", "error");
+          }
+        } catch (error) {
+          Swal.fire("Error!", "Server error occurred", "error");
+        }
+      }
+    });
+  };
+
   return (
     <div className="w-full bg-gray-50 p-6 min-h-screen">
       {/* 🔹 Filter Section */}
@@ -302,7 +334,7 @@ const ReviewTable = () => {
               className="border border-gray-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-teal-500  px-3 py-1.5 text-sm"
             >
               <option>Any rating</option>
-              <option >5 stars</option>
+              <option>5 stars</option>
               <option>4 stars</option>
               <option>3 stars</option>
               <option>2 stars</option>
@@ -387,9 +419,7 @@ const ReviewTable = () => {
                 </td>
 
                 <td className="px-4 py-4">
-                  <div className="flex gap-1">
-                    {renderStars(review.rating)}
-                  </div>
+                  <div className="flex gap-1">{renderStars(review.rating)}</div>
                 </td>
 
                 <td className="px-4 py-4 max-w-md">
@@ -400,7 +430,12 @@ const ReviewTable = () => {
                 </td>
 
                 <td className="px-4 py-4">
-                  <FaRegEdit className="text-blue-600 cursor-pointer" />
+                  <button
+                    onClick={() => handleDelete(review._id)}
+                    className="text-2xl hover:text-red-500 cursor-pointer"
+                  >
+                    <RiDeleteBin6Line />
+                  </button>
                 </td>
               </tr>
             ))}

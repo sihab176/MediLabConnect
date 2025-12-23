@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaMapMarkerAlt, FaPhoneAlt, FaClock } from "react-icons/fa";
 import { MdVerified, MdClose } from "react-icons/md";
-import {  FaDownload, FaHome } from "react-icons/fa";
+import { FaDownload, FaHome } from "react-icons/fa";
 
 // Booking Modal Component
 const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
@@ -14,6 +14,7 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
   const [bookingData, setBookingData] = useState({
     bloodType: "",
     units: 1,
+    status: "pending",
     patientName: "",
     patientId: "",
     hospitalName: "",
@@ -28,6 +29,7 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
     setBookingData({
       bloodType: "",
       units: 1,
+      status: "pending",
       patientName: "",
       patientId: "",
       hospitalName: "",
@@ -225,9 +227,7 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
               ✓
             </div>
 
-            <h2 className=" font-bold text-gray-800">
-              Booking Confirmed!
-            </h2>
+            <h2 className=" font-bold text-gray-800">Booking Confirmed!</h2>
             <p className="mb-6 text-[11px] text-gray-500">
               Your blood booking has been successfully processed
             </p>
@@ -235,7 +235,9 @@ const BloodBookingModal = ({ isOpen, onClose, bank, searchResults }) => {
             <div className="mb-6 rounded-lg bg-gray-50 p-4 text-left space-y-2  text-[13px]">
               <p>
                 <span className="text-gray-500">Patient ID:</span>{" "}
-                <span className="font-semibold text-blue-600">{bookingData.patientId}</span>
+                <span className="font-semibold text-blue-600">
+                  {bookingData.patientId}
+                </span>
               </p>
               <p>
                 <span className="text-gray-500">Blood Bank:</span>{" "}
