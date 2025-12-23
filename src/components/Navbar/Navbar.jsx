@@ -26,7 +26,7 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
     setIsDark(darkMode);
   };
-
+  console.log("session role", session?.user?.role);
   const links = (
     <>
       <li
@@ -50,13 +50,15 @@ const Navbar = () => {
       >
         <Link href="/BloodBank">Blood Bank</Link>
       </li>
-      <li
-        className={`mx-4 ${
-          pathname == "/Dashboard" ? "text-sky-500 font-bold border-b-2" : ""
-        }`}
-      >
-        <Link href="/Dashboard">Dashboard</Link>
-      </li>
+      {session?.user?.role === "admin" && (
+        <li
+          className={`mx-4 ${
+            pathname == "/Dashboard" ? "text-sky-500 font-bold border-b-2" : ""
+          }`}
+        >
+          <Link href="/Dashboard">Dashboard</Link>
+        </li>
+      )}
       <li
         className={`mx-4 ${
           pathname == "/OurTeam" ? "text-sky-500 font-bold border-b-2" : ""
