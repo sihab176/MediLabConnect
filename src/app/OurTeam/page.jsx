@@ -1,6 +1,8 @@
 "use client";
 import Footer from "@/components/Footer/Footer";
 import MedicalTeam from "@/components/MedicalTeam/MedicalTeam";
+import TeamContactPage from "@/components/MedicalTeam/TeamContactPage";
+import TeamHeroSection from "@/components/MedicalTeam/TeamHeroSection";
 import Navbar from "@/components/Navbar/Navbar";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -70,10 +72,12 @@ const OurTeamPage = () => {
       </div>
       <div id="smooth-wrapper">
         <div id="smooth-content" className="pt-[70px]">
+          <TeamHeroSection />
           <MedicalTeam />
           {/*  */}
-          <section className="py-16 px-4 bg-white">
-            <div className="max-w-6xl mx-auto">
+          <TeamContactPage />
+          <section className="py-16  ">
+            <div className="max-w-6xl mx-auto mb-20 px-4">
               {/* Header */}
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -108,7 +112,9 @@ const OurTeamPage = () => {
                 })}
               </div>
             </div>
+            
           </section>
+          
           <Footer />
         </div>
       </div>

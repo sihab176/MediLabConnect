@@ -1,7 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbPointFilled } from "react-icons/tb";
 import BloodBankCard from "./BloodBankCard";
+import { SlLocationPin } from "react-icons/sl";
+
+
+
 
 const BankSearch = () => {
   const [bloodGroup, setBloodGroup] = useState("AB+");
@@ -53,11 +57,14 @@ const BankSearch = () => {
     }
   };
 
-  console.log("search result", searchResults);
+
+
+
+  // console.log("search result", searchResults);
 
   return (
     <div className=" bg-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className=" max-w-7xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-dashed border-gray-200">
           {/* Header */}
           <div className="text-center mb-8">
@@ -93,7 +100,7 @@ const BankSearch = () => {
             {/* Location Dropdown */}
             <div className="flex flex-col">
               <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                <span className="text-blue-500">📍</span>
+                <span className="text-blue-500"><SlLocationPin size={20}/></span>
                 Location
               </label>
               <select
@@ -137,7 +144,6 @@ const BankSearch = () => {
                 disabled={loading}
                 className="w-full px-6 py-3 bg-[#4161a3] hover:bg-[#334d82] text-white font-bold rounded  focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
               >
-                
                 {loading ? "Searching..." : "Search"}
               </button>
             </div>
@@ -168,7 +174,9 @@ const BankSearch = () => {
           {/*================================ Search Results =============================*/}
           <div>
             {searchResults?.banks?.length === 0 ? (
-              <p className="text-center text-2xl font-semibold text-gray-500 mt-8 pt-6 border-t border-gray-200">No results found</p>
+              <p className="text-center text-2xl font-semibold text-gray-500 mt-8 pt-6 border-t border-gray-200">
+                No results found
+              </p>
             ) : (
               <div>
                 {" "}

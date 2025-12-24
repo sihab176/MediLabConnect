@@ -125,7 +125,7 @@ const MedicalTeam = () => {
                   className="rounded-full ring-2 ring-sky-600"
                 />
                 <div>
-                  <h3 className="text-2xl font-bold">Dr. {doctor.name}</h3>
+                  <h3 className="text-2xl ">Dr. {doctor.name}</h3>
                   <p>Oncology</p>
                 </div>
               </section>
@@ -155,7 +155,7 @@ const MedicalTeam = () => {
                   className="rounded-full ring-2 ring-sky-600"
                 />
                 <div>
-                  <h3 className="text-2xl font-bold">Dr. Mickel Bars</h3>
+                  <h3 className="text-2xl ">Dr. Mickel Bars</h3>
                   <p>Oncology</p>
                 </div>
               </section>
