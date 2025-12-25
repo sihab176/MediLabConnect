@@ -118,7 +118,7 @@ const Banner = () => {
 
             {/* Buttons */}
             <div className="mt-8 flex flex-wrap gap-4">
-              <button className="btn_1 opacity-0 px-8 py-3 bg-[#0089FF] text-white font-medium rounded-md shadow-lg shadow-blue-500/30 hover:bg-blue-600 transition-all">
+              <button className="btn_1 opacity-0 px-8 py-3 bg-[#0089FF] text-white font-medium rounded-md shadow-lg shadow-blue-500/30 hover:bg-[#087de4] transition-all">
                 Schedule Appointment
               </button>
               <button className="btn_2 opacity-0 px-8 py-3 bg-transparent border border-gray-300 text-gray-600 font-medium rounded-md hover:border-gray-400 hover:bg-gray-50 transition-all">

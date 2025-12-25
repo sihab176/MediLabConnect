@@ -108,9 +108,9 @@ const Navbar = () => {
             </ul>
           </div>
           <Link href="/">
-            <div className="text-2xl font-bold flex items-center gap-2">
+            <div className="text-2xl font-semibold flex items-center gap-2">
               <Image
-                src="/healthService.png"
+                src="/stethoscope.png"
                 alt="logo"
                 width={40}
                 height={40}

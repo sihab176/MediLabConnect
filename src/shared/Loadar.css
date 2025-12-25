@@ -1,0 +1,27 @@
+@keyframes rotateCW {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCCW {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.loader-ring-slow {
+  animation: rotateCW 10s linear infinite;
+}
+
+.loader-ring-medium {
+  animation: rotateCCW 6s linear infinite;
+}
+
+.loader-ring-fast {
+  animation: rotateCW 3s linear infinite;
+}
+
+.loader-wrapper {
+  pointer-events: none;
+}

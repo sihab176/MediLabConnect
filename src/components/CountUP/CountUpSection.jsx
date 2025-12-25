@@ -14,15 +14,15 @@ const CountUpSection = () => {
             <p className="text-sm text-gray-50 uppercase tracking-wide">
               The Finest Design Agency
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
-              You convey the idea, and <br /> we deliver a refined interface.
+            <h2 className="text-3xl md:text-6xl  text-gray-900 mt-2 ">
+              You convey the idea, and we deliver a refined interface.
             </h2>
             <p className="mt-4 text-gray-700 leading-relaxed">
               We’re one of the finest web design agencies that team up with
               startups, agencies, and founders to design digital products and
               websites.
             </p>
-            <button className="mt-6 px-6 py-3 bg-blue-500 text-white rounded font-medium hover:bg-blue-700 transition">
+            <button className="mt-6 px-8 py-5 btn btn-outline hover:bg-black/20  text-white rounded font-medium  transition">
               More Details
             </button>
           </div>

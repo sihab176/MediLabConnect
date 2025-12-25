@@ -101,7 +101,7 @@ const MedicalTreatment = () => {
         <div className="mt-left relative flex justify-center items-center">
           {/* Clip-path background */}
           <div
-            className="mt-shape absolute z-0 w-[420px] h-[420px] bg-[#334d82] opacity-90"
+            className="mt-shape absolute z-0 w-[420px] h-[420px] bg-[#4bb6c6] opacity-90"
             style={{
               clipPath:
                 "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
@@ -122,16 +122,16 @@ const MedicalTreatment = () => {
 
         {/* RIGHT SIDE: CONTENT */}
         <div className="mt-right flex flex-col space-y-4">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a2b4b] leading-tight">
+          <h2 className="text-4xl md:text-5xl  text-[#1a2b4b] leading-tight">
             We always Insure Best Medical Treatment for your health.
           </h2>
 
-          <p className="text-gray-500 leading-relaxed max-w-lg">
+          <p className="text-gray-500 leading-relaxed text-sm max-w-lg">
             Helping you always is our best health to health to trust. Lorem
             ipsum dolor sit, amet consectetur elit.
           </p>
 
-          <p className="text-gray-500 leading-relaxed max-w-lg">
+          <p className="text-gray-500 leading-relaxed max-w-lg text-sm ">
             Helping you always is our best health to health to trust. Ut sed do
             eiusmod tempor incididunt the atram cosusblua.
           </p>
@@ -158,7 +158,7 @@ const MedicalTreatment = () => {
 
           {/* CTA Button */}
           <div className="pt-6">
-            <button className="mt-btn bg-[#4161a3] hover:bg-[#334d82] text-white font-bold py-4 px-8 rounded-md transition-all uppercase text-sm tracking-wider">
+            <button className="mt-btn bg-[#0089FF] hover:bg-[#087de4] text-white font-bold py-4 px-8 rounded-md transition-all uppercase text-sm tracking-wider">
               Get a Consultation
             </button>
           </div>

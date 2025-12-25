@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import SuggestDoctorCard from "./SuggestDoctrorCard/SuggestDoctorCard";
 
 const Modal = ({ open, setOpen }) => {
-  const [note, setNote] = useState(null);
+  const [note, setNote] = useState("");
   const [loading, setLoading] = useState(false);
   const [suggestDoctor, setSuggestDoctor] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState({});
@@ -138,7 +138,7 @@ const Modal = ({ open, setOpen }) => {
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="Add Details Here..."
-                  className="h-[160px] w-full rounded p-2 border"
+                  className="h-[160px] w-full p-4  border-2 border-gray-400 rounded-lg text-gray-800  focus:outline-none focus:border-[#4161a3] focus:ring-2 focus:ring-blue-200 transition-all "
                 />
 
                 <div className="flex justify-end mt-4">

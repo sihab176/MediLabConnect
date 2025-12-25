@@ -30,9 +30,9 @@ const Footer = () => {
         <div className="md:col-span-5">
           <div className="flex items-center gap-2 mb-4">
             <Link href="/">
-              <div className="text-2xl font-bold flex items-center gap-2">
+              <div className="text-2xl font-semibold flex items-center gap-2">
                 <Image
-                  src="/healthService.png"
+                  src="/stethoscope.png"
                   alt="logo"
                   width={40}
                   height={40}
@@ -66,13 +66,13 @@ const Footer = () => {
 
         {/* CENTER TEXT */}
         <div className="md:col-span-7">
-          <h3 className="text-3xl md:text-4xl font-bold text-blue-900 mb-10">
+          <h3 className="text-3xl md:text-4xl font-bold text-white mb-10">
             There is Only One Thing In The World I Want And That Is Hospital.
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
-              <h4 className="font-semibold text-blue-700 mb-3">Useful Link</h4>
+              <h4 className="font-semibold text-sky-700 mb-3">Useful Link</h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li
                   className={`mx-4 ${
@@ -114,7 +114,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold text-blue-700 mb-3">Working Time</h4>
+              <h4 className="font-semibold text-sky-700 mb-3">Working Time</h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>Mon - Fri: 9.00am - 5.00pm</li>
                 <li>Saturday: 10.00am - 6.00pm</li>
@@ -123,7 +123,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold text-blue-700 mb-3">Our Address</h4>
+              <h4 className="font-semibold text-sky-700 mb-3">Our Address</h4>
               <p className="text-sm text-gray-600">
                 Old Westbury 256, New York <br />
                 11201, United States
@@ -136,7 +136,7 @@ const Footer = () => {
       {/* STETHOSCOPE IMAGE */}
       <div className="absolute left-1/3 -translate-x-1/2 rotate-12  bottom-14">
         <Image
-          src="/stetgiscope-removebg-preview.png"
+          src="/footerstethoscope.png"
           alt="stethoscope"
           width={350}
           height={200}

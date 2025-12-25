@@ -4,6 +4,7 @@ import MedicalTeam from "@/components/MedicalTeam/MedicalTeam";
 import TeamContactPage from "@/components/MedicalTeam/TeamContactPage";
 import TeamHeroSection from "@/components/MedicalTeam/TeamHeroSection";
 import Navbar from "@/components/Navbar/Navbar";
+import Loader from "@/shared/Loader";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollSmoother, ScrollTrigger } from "gsap/all";
@@ -114,7 +115,7 @@ const OurTeamPage = () => {
             </div>
             
           </section>
-          
+          {/* <Loader/> */}
           <Footer />
         </div>
       </div>
