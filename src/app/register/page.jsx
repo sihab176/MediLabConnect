@@ -22,7 +22,7 @@ const registerPage = () => {
     const res = await RegisterUser({ name, email, password, phone });
     console.log("res=========>", res);
     if (res.success) {
-      toast.success("successfully sign in");
+      // toast.success("successfully sign in");
       await signIn("credentials", {
         redirect: true,
         email,

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 const UserManage = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [reload, setReload]=useState(false)
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,35 +32,35 @@ const UserManage = () => {
   if (loading) {
     return <p className="text-center p-10">Loading...</p>;
   }
- const handleDelete=(id)=>{
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then(async(result) => {
-        if (result.isConfirmed) {
-          console.log("Deleted id:", id);
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        console.log("Deleted id:", id);
         try {
-          const res= await fetch(`/api/users/${id}`,{
-            method:"DELETE",
-          })
-          const data= await res.json()
-          if(data.success){
-            setReload(!reload)
+          const res = await fetch(`/api/users/${id}`, {
+            method: "DELETE",
+          });
+          const data = await res.json();
+          if (data.success) {
+            setReload(!reload);
             Swal.fire("Deleted!", "Doctor removed successfully.", "success");
-          }else{
-             Swal.fire("Error!", data.message || "Delete failed", "error");
+          } else {
+            Swal.fire("Error!", data.message || "Delete failed", "error");
           }
         } catch (error) {
           Swal.fire("Error!", "Server error occurred", "error");
         }
       }
-      });
- }
+    });
+  };
 
   return (
     <div
@@ -83,7 +83,9 @@ const UserManage = () => {
               <th className="p-3 hidden sm:table-cell">ID</th>
               <th className="p-3 hidden sm:table-cell">Name</th>
               <th className="p-3 hidden sm:table-cell">Role</th>
-              <th className="p-3 hidden sm:table-cell  md:hidden lg:block">Phone</th>
+              <th className="p-3 hidden sm:table-cell  md:hidden lg:block">
+                Phone
+              </th>
               <th className="p-3">Email</th>
 
               <th className="p-3">
@@ -93,7 +95,10 @@ const UserManage = () => {
           </thead>
           <tbody className="border-b ">
             {users.map((user) => (
-              <tr key={user._id} className="border-b border-gray-200 lg:text-sm ">
+              <tr
+                key={user._id}
+                className="border-b border-gray-200 lg:text-sm "
+              >
                 <td className="px-3 py-8 font-medium dark:text-gray-600 hidden sm:table-cell">
                   {user._id}
                 </td>
@@ -110,7 +115,10 @@ const UserManage = () => {
                   <p>{user.email}</p>
                 </td>
                 <td className="px-3 py-8">
-                  <button onClick={()=>handleDelete(user._id)} className="btn bg-red-500 hover:bg-red-600 btn-sm border-0 text-white w-14 h-6 rounded">
+                  <button
+                    onClick={() => handleDelete(user._id)}
+                    className="btn bg-red-500 hover:bg-red-600 btn-sm border-0 text-white w-14 h-6 rounded"
+                  >
                     Delete
                   </button>
                 </td>

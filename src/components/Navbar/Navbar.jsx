@@ -3,30 +3,27 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
   const pathname = usePathname();
   const { data: session, status } = useSession();
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDrawer = () => setIsOpen(!isOpen);
-  const [isDark, setIsDark] = useState(false);
+  // বাইরে ক্লিক করলে dropdown বন্ধ হবে
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-theme", savedTheme);
-    setIsDark(savedTheme === "dark");
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  //! Handle switch toggle  ===================================>
-  const switchTheme = (e) => {
-    const darkMode = e.target.checked;
-    const theme = darkMode ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-    setIsDark(darkMode);
-  };
-  console.log("session role", session?.user?.role);
+  console.log("env file",process.env.NEXTAUTH_SECRET);
   const links = (
     <>
       <li
@@ -146,19 +143,43 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {status === "authenticated" ? (
-            <button
-              onClick={() => signOut()}
-              className="btn btn-sm bg-sky-700 border-0 mx-2 text-white"
-            >
-              Log out
-            </button>
+            <div className="relative" ref={dropdownRef}>
+              {/* Profile Image */}
+              <Image
+                src={session?.user?.image || "/user.png"}
+                alt="user_logo"
+                width={40}
+                height={40}
+                className="object-cover rounded-full cursor-pointer"
+                onClick={() => setOpen(!open)}
+              />
+
+              {/* Dropdown */}
+              {open && (
+                <div className="absolute right-0 mt-2 w-40 bg-white  rounded-lg shadow-lg z-50">
+                  <button
+                    onClick={() => signOut()}
+                    className="w-full btn border-0 text-left px-4 py-2 text-sm hover:bg-gray-100 rounded-lg"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
+            // <button
+            //   onClick={() => signOut()}
+            //   className="btn btn-sm bg-sky-700 border-0 mx-2 text-white"
+            // >
+            //   Log out
+            // </button>
             <Link href="/login">
               <button className="btn btn-sm bg-sky-700 border-0 text-white">
                 Login
               </button>
             </Link>
           )}
+          {/* image */}
         </div>
       </div>
     </div>

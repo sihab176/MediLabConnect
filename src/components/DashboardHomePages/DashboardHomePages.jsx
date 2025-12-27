@@ -17,15 +17,15 @@ import {
   FaRegCommentDots,
   FaClipboardList,
 } from "react-icons/fa";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+// import {
+//   AreaChart,
+//   Area,
+//   XAxis,
+//   YAxis,
+//   CartesianGrid,
+//   Tooltip,
+//   ResponsiveContainer,
+// } from "recharts";
 import StatsCards from "./StatsCards";
 import OverviewChart from "./OverviewChart";
 import { useSession } from "next-auth/react";
@@ -34,7 +34,7 @@ const DashboardHomePages = () => {
   const [selectedDate, setSelectedDate] = useState(false);
   const [bloodData, setBloodData] = useState([]);
    const { data: session } = useSession();
-    console.log("ROLE 👉", session?.user?.role);
+    // console.log("ROLE 👉", session?.user?.role);
 
   useEffect(() => {
     const bloodDataFun = async () => {

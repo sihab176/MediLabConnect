@@ -25,7 +25,7 @@ const LoginPage = () => {
     if (result.error) {
       toast.error("Authentication field");
     } else {
-      toast.success("successfully login");
+      // toast.success("successfully login");
       router.push("/");
       from.reset();
     }

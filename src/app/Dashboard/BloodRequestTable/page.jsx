@@ -142,7 +142,7 @@ const BloodRequestTable = () => {
                 </div>
               </div>
               <div className="flex flex-col items-end">
-                <td className="px-6 py-4 text-center">
+                <div className="px-6 py-4 text-center">
                   <select
                     value={req.status}
                     onChange={(e) =>
@@ -160,7 +160,7 @@ const BloodRequestTable = () => {
                     <option value="approved">Approved</option>
                     <option value="completed">Completed</option>
                   </select>
-                </td>
+                </div>
               </div>
             </div>
           ))}

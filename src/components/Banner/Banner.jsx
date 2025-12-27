@@ -91,11 +91,6 @@ const Banner = () => {
             </div>
 
             {/* Main Heading */}
-            {/* <h1 className="text-6xl lg:text-7xl  leading-tight text-[#333]">
-              Our Best <br />
-              <span className="text-[#0089FF]">Doctors</span> <br />
-              <span className="text-[#0089FF]">Online</span>
-            </h1> */}
             <h1 className="text-6xl lg:text-7xl leading-tight text-[#333] overflow-hidden">
               <span className="word inline-block mr-3">Our</span>
               <span className="word inline-block mr-3">Best</span>

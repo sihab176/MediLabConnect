@@ -15,8 +15,8 @@ export default function DashboardLayout({ children }) {
       <aside className="hidden lg:flex lg:flex-col w-64 bg-[#b3dee2] shadow-lg">
         {/* logo */}
         <Link href="/">
-        <div className="p-4 text-2xl font-bold border-b flex items-center gap-2"><Image
-                    src="/logo.png"
+        <div className="p-4 text-2xl font-semibold border-b flex items-center gap-2"><Image
+                    src="/stethoscope.png"
                     alt="logo"
                     width={40}
                     height={40}
@@ -39,43 +39,43 @@ export default function DashboardLayout({ children }) {
           </Link>
           <Link
             href="/Dashboard/addBlood"
-            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/addDoctors' ? 'bg-blue-300' : ''}`}
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/addBlood' ? 'bg-blue-300' : ''}`}
           >
             Add Blood Bank
           </Link>
            <Link
             href="/Dashboard/doctorsMangement"
-            className="block p-2 rounded hover:bg-gray-200 mb-4"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/doctorsMangement' ? 'bg-blue-300' : ''}`}
           >
             Manage Doctors
           </Link>
            <Link
             href="/Dashboard/manageBlood"
-            className="block p-2 rounded hover:bg-gray-200 mb-4"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/manageBlood' ? 'bg-blue-300' : ''}`}
           >
             Manage Blood Bank
           </Link>
            <Link
             href="/Dashboard/userManage"
-            className="block p-2 rounded hover:bg-gray-200 mb-4"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/userManage' ? 'bg-blue-300' : ''}`}
           >
             Manage user
           </Link>
            <Link
             href="/Dashboard/feedback"
-            className="block p-2 rounded hover:bg-gray-200 mb-4"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/feedback' ? 'bg-blue-300' : ''}`}
           >
             Feedback
           </Link>
            <Link
             href="/Dashboard/BloodRequestTable"
-            className="block p-2 rounded hover:bg-gray-200 mb-4"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/BloodRequestTable' ? 'bg-blue-300' : ''}`}
           >
            BloodRequestTable
           </Link>
            <Link
             href="/Dashboard/message"
-            className="block p-2 rounded hover:bg-gray-200 mb-4"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/message' ? 'bg-blue-300' : ''}`}
           >
             Message
           </Link>
@@ -95,8 +95,8 @@ export default function DashboardLayout({ children }) {
       >
         <div className="p-4 text-2xl font-bold border-b flex justify-between items-center">
           <Link href="/">
-        <div className="p-2 text-2xl font-bold flex items-center gap-2"><Image
-                    src="/logo.png"
+        <div className="p-2 text-2xl font-semibold flex items-center gap-2"><Image
+                    src="/stethoscope.png"
                     alt="logo"
                     width={40}
                     height={40}
@@ -106,29 +106,59 @@ export default function DashboardLayout({ children }) {
           <button onClick={() => setSidebarOpen(false)}>✕</button>
         </div>
         <nav className="p-4 space-y-2">
-          <Link
+         <Link
             href="/Dashboard"
-            className="block p-2 rounded hover:bg-gray-200"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard' ? 'bg-blue-300' : ''}`}
           >
             Dashboard
           </Link>
           <Link
+            href="/Dashboard/addDoctors"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/addDoctors' ? 'bg-blue-300' : ''}`}
+          >
+            Add Doctors
+          </Link>
+          <Link
+            href="/Dashboard/addBlood"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/addBlood' ? 'bg-blue-300' : ''}`}
+          >
+            Add Blood Bank
+          </Link>
+           <Link
             href="/Dashboard/doctorsMangement"
-            className="block p-2 rounded hover:bg-gray-200"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/doctorsMangement' ? 'bg-blue-300' : ''}`}
           >
             Manage Doctors
           </Link>
-          <Link
-            href="/Dashboard/PaymentHistory"
-            className="block p-2 rounded hover:bg-gray-200"
+           <Link
+            href="/Dashboard/manageBlood"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/manageBlood' ? 'bg-blue-300' : ''}`}
           >
-            Payments History
+            Manage Blood Bank
           </Link>
-          <Link
-            href="/dashboard/settings"
-            className="block p-2 rounded hover:bg-gray-200"
+           <Link
+            href="/Dashboard/userManage"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/userManage' ? 'bg-blue-300' : ''}`}
           >
-            Settings
+            Manage user
+          </Link>
+           <Link
+            href="/Dashboard/feedback"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/feedback' ? 'bg-blue-300' : ''}`}
+          >
+            Feedback
+          </Link>
+           <Link
+            href="/Dashboard/BloodRequestTable"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/BloodRequestTable' ? 'bg-blue-300' : ''}`}
+          >
+           BloodRequestTable
+          </Link>
+           <Link
+            href="/Dashboard/message"
+            className={`block p-2 rounded hover:bg-gray-200 mb-4 ${pathname === '/Dashboard/message' ? 'bg-blue-300' : ''}`}
+          >
+            Message
           </Link>
         </nav>
       </aside>

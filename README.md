@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Live Demo
 
-[MediLab Live](https://medilab-mu.vercel.app)
+[MediLab Live](http://localhost:3000)
 
 ## Getting Started
 

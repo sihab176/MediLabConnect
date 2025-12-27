@@ -2,17 +2,16 @@ import DoctorDetailsClient from "@/components/DoctorDetailsClient/DoctorDetailsC
 import ReviewSection from "@/components/ReviewSection/ReviewSection";
 const DoctorDetailsPage = async ({ params }) => {
   const p = await params;
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/allDoctors/${p.id}`,
-    { cache: "no-store" }
-  );
+  const res = await fetch(`http://localhost:3000/api/allDoctors/${p.id}`, {
+    cache: "no-store",
+  });
   const data = await res.json();
 
   return (
     <>
       <DoctorDetailsClient data={data} />
 
-      <ReviewSection doctorId={p}/>
+      <ReviewSection doctorId={p} />
     </>
   );
 };

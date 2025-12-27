@@ -9,16 +9,15 @@ import Link from "next/link";
 const DoctorManagement = () => {
   const [allData, setAllData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [pageReload, setPageReload]=useState(false)
+  const [pageReload, setPageReload] = useState(false);
 
   //   Fetch data correctly-------------------------->
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:3000/api/allDoctors`,
-          { cache: "no-store" }
-        );
+        const res = await fetch(`http://localhost:3000/api/allDoctors`, {
+          cache: "no-store",
+        });
 
         if (!res.ok) {
           throw new Error("Failed to fetch doctors");
@@ -37,7 +36,7 @@ const DoctorManagement = () => {
   }, [pageReload]);
 
   //  Delete handler--------------------------------->
-  const handleDelete = async(id) => {
+  const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -46,23 +45,24 @@ const DoctorManagement = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then(async(result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         console.log("Deleted id:", id);
-      try {
-        const res= await fetch(`/api/allDoctors/${id}`,{
-          method:"DELETE",
-        })
-        const data= await res.json()
-        if(data.success){
-          setPageReload(!pageReload)
-          Swal.fire("Deleted!", "Doctor removed successfully.", "success");
-        }else{
-           Swal.fire("Error!", data.message || "Delete failed", "error");
+        try {
+          const res = await fetch(`/api/allDoctors/${id}`, {
+            method: "DELETE",
+          });
+          const data = await res.json();
+          if (data.success) {
+            setPageReload(!pageReload);
+            Swal.fire("Deleted!", "Doctor removed successfully.", "success");
+          } else {
+            Swal.fire("Error!", data.message || "Delete failed", "error");
+          }
+        } catch (error) {
+          Swal.fire("Error!", "Server error occurred", "error");
         }
-      } catch (error) {
-        Swal.fire("Error!", "Server error occurred", "error");
-      }}
+      }
     });
   };
 
@@ -74,7 +74,6 @@ const DoctorManagement = () => {
     <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
       <div className="overflow-x-auto">
         <table className="w-full p-6 text-xs text-left whitespace-nowrap">
-          
           {/* ⚠️ No whitespace inside colgroup */}
           <colgroup>
             <col className="w-5" />
@@ -110,9 +109,7 @@ const DoctorManagement = () => {
                   />
                 </td>
 
-                <td className="px-3 py-4">
-                  {doctor.details?.doctor_name}
-                </td>
+                <td className="px-3 py-4">{doctor.details?.doctor_name}</td>
 
                 <td className="px-3 py-4 hidden sm:table-cell">
                   {doctor.details?.specialization}
@@ -131,7 +128,10 @@ const DoctorManagement = () => {
                 </td>
 
                 <td className="px-3 py-4 flex gap-2">
-                  <Link href={`/Dashboard/updateDoctor/${doctor._id}`} className="p-2 hover:bg-gray-200 rounded-full">
+                  <Link
+                    href={`/Dashboard/updateDoctor/${doctor._id}`}
+                    className="p-2 hover:bg-gray-200 rounded-full"
+                  >
                     <CiEdit />
                   </Link>
 
@@ -145,7 +145,6 @@ const DoctorManagement = () => {
               </tr>
             ))}
           </tbody>
-
         </table>
       </div>
     </div>

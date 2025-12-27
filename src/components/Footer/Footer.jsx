@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
@@ -49,18 +50,34 @@ const Footer = () => {
           </p>
 
           <div className="flex gap-3">
-            <div className="w-9 h-9 rounded-full border flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition cursor-pointer">
+            <a
+              href="https://www.facebook.com/md.shahariyar.787622"
+              target="_blank"
+              className="w-9 h-9 rounded-full border flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition cursor-pointer"
+            >
               <FaFacebookF />
-            </div>
-            <div className="w-9 h-9 rounded-full border flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition cursor-pointer">
-              <FaXTwitter />
-            </div>
-            <div className="w-9 h-9 rounded-full border flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition cursor-pointer">
+            </a>
+            <a
+              href="https://github.com/sihab176"
+              target="_blank"
+              className="w-9 h-9 rounded-full border flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition cursor-pointer"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/shahab-bin-shariar-web/"
+              target="_blank"
+              className="w-9 h-9 rounded-full border flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition cursor-pointer"
+            >
               <FaLinkedinIn />
-            </div>
-            <div className="w-9 h-9 rounded-full border flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition cursor-pointer">
+            </a>
+            <a
+              href="https://www.facebook.com/md.shahariyar.787622"
+              target="_blank"
+              className="w-9 h-9 rounded-full border flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition cursor-pointer"
+            >
               <FaInstagram />
-            </div>
+            </a>
           </div>
         </div>
 
